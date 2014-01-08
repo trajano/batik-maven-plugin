@@ -7,7 +7,7 @@
 		<artifactId>trajano</artifactId>
 		<version>5</version>
 	</parent>
-	<groupId>net.trajano.batik</groupId>
+	<groupId>net.trajano.mojo</groupId>
 	<artifactId>batik-maven-plugin</artifactId>
 	<name>Batik Maven Plugin</name>
 	<version>1.0.0-SNAPSHOT</version>
@@ -22,6 +22,35 @@
 		<tag>HEAD</tag>
 	</scm>
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugin-tools</groupId>
+			<artifactId>maven-plugin-annotations</artifactId>
+			<version>3.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugin-testing</groupId>
+			<artifactId>maven-plugin-testing-harness</artifactId>
+			<version>3.0.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-core</artifactId>
+			<version>3.1.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-compat</artifactId>
+			<version>3.1.1</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>net.trajano.commons</groupId>
 			<artifactId>commons-testing</artifactId>
@@ -52,6 +81,28 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-plugin-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-descriptor</id>
+						<goals>
+							<goal>descriptor</goal>
+						</goals>
+						<phase>process-classes</phase>
+					</execution>
+					<execution>
+						<id>help-descriptor</id>
+						<goals>
+							<goal>helpmojo</goal>
+						</goals>
+						<phase>process-classes</phase>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
