@@ -57,7 +57,7 @@ public class LoggingSvgConverterController implements SVGConverterController {
     public boolean proceedWithSourceTranscoding(
             final SVGConverterSource source, final File desFile) {
         // TODO use resources.
-        log.info("about to transcode" + source.getName() + " to " + desFile);
+        log.info("about to transcode " + source.getName() + " to " + desFile);
         return true;
     }
 

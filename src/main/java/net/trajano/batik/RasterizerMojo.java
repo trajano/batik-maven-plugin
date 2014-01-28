@@ -1,21 +1,38 @@
 package net.trajano.batik;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.batik.apps.rasterizer.DestinationType;
 import org.apache.batik.apps.rasterizer.SVGConverter;
 import org.apache.batik.apps.rasterizer.SVGConverterException;
+import org.apache.maven.model.Resource;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.codehaus.plexus.util.DirectoryScanner;
 
 /**
  * Executes the Batik rasterizer.
  */
 @Mojo(name = "rasterizer", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, threadSafe = true, requiresOnline = false)
 public class RasterizerMojo extends AbstractMojo {
+    /**
+     * Default SVG resources.
+     */
+    private static final List<Resource> DEFAULT_SVG_RESOURCES;
+
+    static {
+        final Resource defaultSvgResource = new Resource();
+        defaultSvgResource.setDirectory("${basedir}/src/main/svg");
+        defaultSvgResource.addInclude("**/*.svg");
+        DEFAULT_SVG_RESOURCES = Collections.singletonList(defaultSvgResource);
+    }
+
     /**
      * The directory to write the rasterized SVG files.
      */
@@ -31,16 +48,24 @@ public class RasterizerMojo extends AbstractMojo {
     private String mimeType;
 
     /**
-     * The directory containing the SVG files.
-     */
-    @Parameter(defaultValue = "${basedir}/src/main/svg", required = true)
-    private File srcDir;
-
-    /**
-     * Include filters on the source files. Default is <code>**\/\*.svg</code>.
+     * A list of SVG resources to import. {@link Resource} is used instead of
+     * FileSet to allow for filtering in the future. The default is:
+     * 
+     * <pre>
+     * &lt;svgResources>
+     *     &lt;resource>
+     *         &lt;directory>${basedir}/src/main/svg&lt;/directory>
+     *         &lt;includes>
+     *             &lt;include>**\/\*.svg&lt;/include>
+     *         &lt;/includes>
+     *         &lt;excludes>
+     *         &lt;/excludes>
+     *     &lt;/resources>
+     * &lt;/svgResources>
+     * </pre>
      */
     @Parameter(required = false)
-    private String[] srcIncludes;
+    private List<Resource> svgResources;
 
     /**
      * {@inheritDoc}
@@ -50,13 +75,28 @@ public class RasterizerMojo extends AbstractMojo {
         final SVGConverter converter = new SVGConverter(
                 new LoggingSvgConverterController(getLog()));
         converter.setDestinationType(mapMimeTypeToDestinationType(mimeType));
-        converter
-                .setSources(new String[] { "src/test/resources/net/trajano/batik/logo.svg" });
+
+        final List<String> sourceFiles = new LinkedList<String>();
+        final DirectoryScanner scanner = new DirectoryScanner();
+        if (svgResources == null) {
+            svgResources = DEFAULT_SVG_RESOURCES;
+        }
+        for (final Resource resource : svgResources) {
+            scanner.setBasedir(resource.getDirectory());
+            scanner.setIncludes(resource.getIncludes().toArray(new String[0]));
+            scanner.setExcludes(resource.getExcludes().toArray(new String[0]));
+            scanner.scan();
+            for (final String includedFile : scanner.getIncludedFiles()) {
+                sourceFiles.add(new File(resource.getDirectory(), includedFile)
+                        .toString());
+            }
+        }
+        converter.setSources(sourceFiles.toArray(new String[0]));
         converter.setDst(destDir);
         try {
             converter.execute();
         } catch (final SVGConverterException e) {
-            // TODO add input file names and type
+            // TODO add input file names and type from resource
             throw new MojoExecutionException("Failed conversion", e);
         }
     }
@@ -69,8 +109,8 @@ public class RasterizerMojo extends AbstractMojo {
      * @return destination type
      * @throws MojoExecutionException
      */
-    private DestinationType mapMimeTypeToDestinationType(final String mimeTypeString)
-            throws MojoExecutionException {
+    private DestinationType mapMimeTypeToDestinationType(
+            final String mimeTypeString) throws MojoExecutionException {
         if ("image/png".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.PNG;
         } else if ("image/tiff".equalsIgnoreCase(mimeTypeString)) {
