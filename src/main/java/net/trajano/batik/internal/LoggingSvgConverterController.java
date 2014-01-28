@@ -1,4 +1,4 @@
-package net.trajano.batik;
+package net.trajano.batik.internal;
 
 import java.io.File;
 import java.util.List;
