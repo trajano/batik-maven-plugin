@@ -1,6 +1,7 @@
 package net.trajano.batik;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.batik.svggen.font.SVGFont;
@@ -10,6 +11,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.codehaus.plexus.util.DirectoryScanner;
 
 /**
  * Executes the Batik Font converter.
@@ -17,9 +19,21 @@ import org.apache.maven.plugins.annotations.Parameter;
 @Mojo(name = "ttf2svg", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, threadSafe = true)
 public class FontConverterMojo extends AbstractMojo {
     /**
-     * The directory to write the rasterized SVG files.
+     * Default font filesets.
      */
-    @Parameter(defaultValue = "${project.build.directory}/generated-resources/batik", required = true)
+    private static final List<FileSet> DEFAULT_FONT_FILESETS;
+
+    static {
+        final FileSet defaultFontFileSet = new FileSet();
+        defaultFontFileSet.setDirectory("${basedir}/src/main/ttf");
+        defaultFontFileSet.addInclude("**/*.ttf");
+        DEFAULT_FONT_FILESETS = Collections.singletonList(defaultFontFileSet);
+    }
+
+    /**
+     * The directory to write the SVG files converted from TTFs.
+     */
+    @Parameter(defaultValue = "${project.build.directory}/generated-resources/ttf2svg", required = true)
     private File destDir;
 
     /**
@@ -47,8 +61,26 @@ public class FontConverterMojo extends AbstractMojo {
      */
     @Override
     public void execute() throws MojoExecutionException {
-        SVGFont.main(new String[] {
-                "src/test/resources/net/trajano/batik/Bromine.ttf", "-o",
-                "target/generated-resources/batik/Bromine.svg", "-testcard" });
+        final DirectoryScanner scanner = new DirectoryScanner();
+        if (fontFileSets == null) {
+            fontFileSets = DEFAULT_FONT_FILESETS;
+        }
+        for (final FileSet fileSet : fontFileSets) {
+            scanner.setBasedir(fileSet.getDirectory());
+            scanner.setIncludes(fileSet.getIncludes().toArray(new String[0]));
+            scanner.setExcludes(fileSet.getExcludes().toArray(new String[0]));
+            scanner.scan();
+            for (final String includedFile : scanner.getIncludedFiles()) {
+
+                SVGFont.main(new String[] {
+                        new File(fileSet.getDirectory(), includedFile)
+                                .toString(),
+                        "-o",
+                        new File(destDir, includedFile.substring(0,
+                                includedFile.lastIndexOf('.')) + ".svg")
+                                .toString() });
+            }
+        }
+
     }
 }

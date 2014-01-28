@@ -13,6 +13,14 @@
 				<artifactId>batik-maven-plugin</artifactId>
 				<configuration>
 					<destDir>target/generated-resources/batik</destDir>
+					<fontFileSets>
+						<fileSet>
+							<directory>src/test/resources/net/trajano/batik</directory>
+							<includes>
+								<include>**/*.ttf</include>
+							</includes>
+						</fileSet>
+					</fontFileSets>
 				</configuration>
 			</plugin>
 		</plugins>
