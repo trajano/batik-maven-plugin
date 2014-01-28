@@ -29,9 +29,9 @@ public class FontConverterMojo extends AbstractMojo {
      * <pre>
      * &lt;fontFileSets>
      *     &lt;fileSet>
-     *         &lt;directory>${basedir}/src/main/svg&lt;/directory>
+     *         &lt;directory>${basedir}/src/main/ttf&lt;/directory>
      *         &lt;includes>
-     *             &lt;include>**\/\*.svg&lt;/include>
+     *             &lt;include>**\/\*.ttf&lt;/include>
      *         &lt;/includes>
      *         &lt;excludes>
      *         &lt;/excludes>
@@ -47,6 +47,8 @@ public class FontConverterMojo extends AbstractMojo {
      */
     @Override
     public void execute() throws MojoExecutionException {
-        SVGFont.main(new String[0]);
+        SVGFont.main(new String[] {
+                "src/test/resources/net/trajano/batik/Bromine.ttf", "-o",
+                "target/generated-resources/batik/Bromine.svg", "-testcard" });
     }
 }
