@@ -17,25 +17,25 @@ import org.apache.maven.plugin.logging.Log;
 public class LoggingSvgConverterController implements SVGConverterController {
 
     /**
-     * Log to write events to.
+     * Maven log to write events to.
      */
-    private final Log log;
+    private final Log mavenLogger;
 
     /**
      * Creates the controller.
      * 
-     * @param log
+     * @param mavenLogger
      *            logger
      */
-    public LoggingSvgConverterController(final Log log) {
-        this.log = log;
+    public LoggingSvgConverterController(final Log mavenLogger) {
+        this.mavenLogger = mavenLogger;
     }
 
     @Override
     public void onSourceTranscodingSuccess(final SVGConverterSource source,
             final File desFile) {
         // TODO use resources.
-        log.info("transcoded " + source.getName() + " to " + desFile);
+        mavenLogger.info("transcoded " + source.getName() + " to " + desFile);
     }
 
     @Override
@@ -57,7 +57,8 @@ public class LoggingSvgConverterController implements SVGConverterController {
     public boolean proceedWithSourceTranscoding(
             final SVGConverterSource source, final File desFile) {
         // TODO use resources.
-        log.info("about to transcode " + source.getName() + " to " + desFile);
+        mavenLogger.info("about to transcode " + source.getName() + " to "
+                + desFile);
         return true;
     }
 
