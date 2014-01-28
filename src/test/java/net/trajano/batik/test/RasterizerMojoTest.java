@@ -24,7 +24,7 @@ public class RasterizerMojoTest {
     @Test
     public void testMojoGoal() throws Exception {
         final File testPom = new File(
-                "src/test/resources/net/trajano/batik/pom.xml");
+                "src/test/resources/net/trajano/batik/rasterizer-pom.xml");
         assertTrue(testPom.exists());
 
         final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
