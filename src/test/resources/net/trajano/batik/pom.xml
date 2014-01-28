@@ -12,9 +12,8 @@
 				<groupId>net.trajano.mojo</groupId>
 				<artifactId>batik-maven-plugin</artifactId>
 				<configuration>
-				    <destDir>${project.build.directory}/generated-resources/batik</destDir>
-				    <mimeType>image/png</mimeType>
-				    <srcDir>srcDir</srcDir>
+					<destDir>target/generated-resources/batik</destDir>
+					<mimeType>image/png</mimeType>
 				</configuration>
 			</plugin>
 		</plugins>

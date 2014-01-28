@@ -1,10 +1,10 @@
 package net.trajano.batik;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.batik.apps.rasterizer.Main;
+import org.apache.batik.apps.rasterizer.DestinationType;
+import org.apache.batik.apps.rasterizer.SVGConverter;
+import org.apache.batik.apps.rasterizer.SVGConverterException;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -43,28 +43,46 @@ public class RasterizerMojo extends AbstractMojo {
     private String[] srcIncludes;
 
     /**
-     * Build arguments with a given inputfile added to the end.
-     * 
-     * @param inputFile
-     *            input file
-     * @return argument list for rasterizer.
-     */
-    public String[] buildArgumentsForFile(final File inputFile) {
-        final List<String> args = new ArrayList<String>();
-        args.add("-d");
-        args.add(destDir.toString());
-        args.add("-m");
-        args.add(mimeType);
-        args.add(inputFile.toString());
-        return args.toArray(new String[0]);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
     public void execute() throws MojoExecutionException {
-        final File inputFile = new File(".");
-        Main.main(buildArgumentsForFile(inputFile));
+        final SVGConverter converter = new SVGConverter(
+                new LoggingSvgConverterController(getLog()));
+        converter.setDestinationType(mapMimeTypeToDestinationType(mimeType));
+        converter
+                .setSources(new String[] { "src/test/resources/net/trajano/batik/logo.svg" });
+        converter.setDst(destDir);
+        try {
+            converter.execute();
+        } catch (final SVGConverterException e) {
+            // TODO add input file names and type
+            throw new MojoExecutionException("Failed conversion", e);
+        }
+    }
+
+    /**
+     * Maps a MIME type string to the {@link DestinationType}.
+     * 
+     * @param mimeType
+     *            MIME type string
+     * @return destination type
+     * @throws MojoExecutionException
+     */
+    private DestinationType mapMimeTypeToDestinationType(final String mimeType)
+            throws MojoExecutionException {
+        if ("image/png".equalsIgnoreCase(mimeType)) {
+            return DestinationType.PNG;
+        } else if ("image/tiff".equalsIgnoreCase(mimeType)) {
+            return DestinationType.TIFF;
+        } else if ("image/jpg".equalsIgnoreCase(mimeType)) {
+            return DestinationType.JPEG;
+        } else if ("application/pdf".equalsIgnoreCase(mimeType)) {
+            return DestinationType.PDF;
+        } else {
+            // TODO use message resources
+            throw new MojoExecutionException("Unsupported MIME type '"
+                    + mimeType + "'");
+        }
     }
 }
