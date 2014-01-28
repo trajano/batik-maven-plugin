@@ -12,6 +12,7 @@
 				<groupId>net.trajano.mojo</groupId>
 				<artifactId>batik-maven-plugin</artifactId>
 				<configuration>
+				    <destDir>${project.build.directory}/generated-resources/batik</destDir>
 				</configuration>
 			</plugin>
 		</plugins>
