@@ -13,6 +13,8 @@
 				<artifactId>batik-maven-plugin</artifactId>
 				<configuration>
 				    <destDir>${project.build.directory}/generated-resources/batik</destDir>
+				    <mimeType>image/png</mimeType>
+				    <srcDir>srcDir</srcDir>
 				</configuration>
 			</plugin>
 		</plugins>
