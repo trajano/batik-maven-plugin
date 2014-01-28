@@ -30,6 +30,7 @@ public class RasterizerMojo extends AbstractMojo {
         final Resource defaultSvgResource = new Resource();
         defaultSvgResource.setDirectory("${basedir}/src/main/svg");
         defaultSvgResource.addInclude("**/*.svg");
+        defaultSvgResource.setFiltering(false);
         DEFAULT_SVG_RESOURCES = Collections.singletonList(defaultSvgResource);
     }
 
@@ -55,6 +56,7 @@ public class RasterizerMojo extends AbstractMojo {
      * &lt;svgResources>
      *     &lt;resource>
      *         &lt;directory>${basedir}/src/main/svg&lt;/directory>
+     *         &lt;filtering>false&lt;/filtering>
      *         &lt;includes>
      *             &lt;include>**\/\*.svg&lt;/include>
      *         &lt;/includes>
@@ -76,7 +78,8 @@ public class RasterizerMojo extends AbstractMojo {
                 new LoggingSvgConverterController(getLog()));
         converter.setDestinationType(mapMimeTypeToDestinationType(mimeType));
 
-        final List<String> sourceFiles = new LinkedList<String>();
+        final List<String> unfilteredSourceFiles = new LinkedList<String>();
+        final List<String> filteredSourceFiles = new LinkedList<String>();
         final DirectoryScanner scanner = new DirectoryScanner();
         if (svgResources == null) {
             svgResources = DEFAULT_SVG_RESOURCES;
@@ -87,14 +90,29 @@ public class RasterizerMojo extends AbstractMojo {
             scanner.setExcludes(resource.getExcludes().toArray(new String[0]));
             scanner.scan();
             for (final String includedFile : scanner.getIncludedFiles()) {
-                sourceFiles.add(new File(resource.getDirectory(), includedFile)
-                        .toString());
+                if (resource.isFiltering()) {
+                    // TODO write out filtered file to batik folder and use the
+                    // filtered file as input.
+                    filteredSourceFiles.add(new File(resource.getDirectory(),
+                            includedFile).toString());
+                } else {
+                    unfilteredSourceFiles.add(new File(resource.getDirectory(),
+                            includedFile).toString());
+                }
             }
         }
-        converter.setSources(sourceFiles.toArray(new String[0]));
         converter.setDst(destDir);
         try {
-            converter.execute();
+            if (!filteredSourceFiles.isEmpty()) {
+                converter
+                        .setSources(filteredSourceFiles.toArray(new String[0]));
+                converter.execute();
+            }
+            if (!unfilteredSourceFiles.isEmpty()) {
+                converter.setSources(unfilteredSourceFiles
+                        .toArray(new String[0]));
+                converter.execute();
+            }
         } catch (final SVGConverterException e) {
             // TODO add input file names and type from resource
             throw new MojoExecutionException("Failed conversion", e);
