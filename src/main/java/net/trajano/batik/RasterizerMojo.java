@@ -64,25 +64,25 @@ public class RasterizerMojo extends AbstractMojo {
     /**
      * Maps a MIME type string to the {@link DestinationType}.
      * 
-     * @param mimeType
+     * @param mimeTypeString
      *            MIME type string
      * @return destination type
      * @throws MojoExecutionException
      */
-    private DestinationType mapMimeTypeToDestinationType(final String mimeType)
+    private DestinationType mapMimeTypeToDestinationType(final String mimeTypeString)
             throws MojoExecutionException {
-        if ("image/png".equalsIgnoreCase(mimeType)) {
+        if ("image/png".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.PNG;
-        } else if ("image/tiff".equalsIgnoreCase(mimeType)) {
+        } else if ("image/tiff".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.TIFF;
-        } else if ("image/jpg".equalsIgnoreCase(mimeType)) {
+        } else if ("image/jpg".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.JPEG;
-        } else if ("application/pdf".equalsIgnoreCase(mimeType)) {
+        } else if ("application/pdf".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.PDF;
         } else {
             // TODO use message resources
             throw new MojoExecutionException("Unsupported MIME type '"
-                    + mimeType + "'");
+                    + mimeTypeString + "'");
         }
     }
 }
