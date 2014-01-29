@@ -80,14 +80,14 @@ public class FontConverterMojo extends AbstractMojo {
 
                 final File inputFile = new File(fileSet.getDirectory(),
                         includedFile);
+                final String basename = includedFile.substring(0,
+                        includedFile.lastIndexOf('.'));
                 try {
                     final PrintStream ps = new PrintStream(
-                            new FileOutputStream(new File(destDir,
-                                    includedFile.substring(0,
-                                            includedFile.lastIndexOf('.'))
-                                            + ".svg")));
+                            new FileOutputStream(new File(destDir, basename
+                                    + ".svg")));
                     SvgFont2.writeFontAsSvg(ps,
-                            Font.create(inputFile.toString()));
+                            Font.create(inputFile.toString()), basename);
                     ps.close();
                 } catch (final Exception e) {
                     throw new MojoExecutionException("Failed to render "

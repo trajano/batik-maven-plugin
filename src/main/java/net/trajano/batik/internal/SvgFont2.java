@@ -22,11 +22,13 @@ public class SvgFont2 extends SVGFont {
      *            print stream to write to. (does not get closed)
      * @param font
      *            font to rend
+     * @param id
+     *            ID of the font
      * @throws Exception
      */
-    public static void writeFontAsSvg(final PrintStream ps, final Font font)
-            throws Exception {
-        writeFontAsSvg(ps, font, null, -1, -1, true, false);
+    public static void writeFontAsSvg(final PrintStream ps, final Font font,
+            final String id) throws Exception {
+        writeFontAsSvg(ps, font, id, -1, -1, true, false);
     }
 
     /**
