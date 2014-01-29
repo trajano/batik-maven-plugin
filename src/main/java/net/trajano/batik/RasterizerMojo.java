@@ -45,7 +45,7 @@ public class RasterizerMojo extends AbstractMojo {
     /**
      * The MIME type of file to convert to. Valid values are
      * <code>image/png</code>, <code>image/jpeg</code>, <code>image/tiff</code>
-     * or <code>application/pdf</code>.
+     * and <code>application/pdf</code>.
      */
     @Parameter(defaultValue = "image/png", required = true)
     private String mimeType;
