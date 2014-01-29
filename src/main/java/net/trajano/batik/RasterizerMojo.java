@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import net.trajano.batik.internal.LoggingSvgConverterController;
 
@@ -35,6 +36,12 @@ public class RasterizerMojo extends AbstractMojo {
         defaultSvgResource.setFiltering(false);
         DEFAULT_SVG_RESOURCES = Collections.singletonList(defaultSvgResource);
     }
+
+    /**
+     * Resource bundle.
+     */
+    private final ResourceBundle bundle = ResourceBundle
+            .getBundle("net/trajano/batik/internal/Messages");
 
     /**
      * The directory to write the rasterized SVG files.
@@ -116,8 +123,8 @@ public class RasterizerMojo extends AbstractMojo {
                 converter.execute();
             }
         } catch (final SVGConverterException e) {
-            // TODO add input file names and type from resource
-            throw new MojoExecutionException("Failed conversion", e);
+            throw new MojoExecutionException(
+                    bundle.getString("errorduringconversion"), e);
         }
     }
 
@@ -140,9 +147,8 @@ public class RasterizerMojo extends AbstractMojo {
         } else if ("application/pdf".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.PDF;
         } else {
-            // TODO use message resources
-            throw new MojoExecutionException("Unsupported MIME type '"
-                    + mimeTypeString + "'");
+            throw new MojoExecutionException(String.format(
+                    bundle.getString("unsupportedmimetype"), mimeTypeString));
         }
     }
 }

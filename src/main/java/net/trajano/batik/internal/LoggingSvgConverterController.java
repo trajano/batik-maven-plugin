@@ -3,6 +3,7 @@ package net.trajano.batik.internal;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import org.apache.batik.apps.rasterizer.SVGConverterController;
 import org.apache.batik.apps.rasterizer.SVGConverterSource;
@@ -15,6 +16,11 @@ import org.apache.maven.plugin.logging.Log;
  * @author Archimedes
  */
 public class LoggingSvgConverterController implements SVGConverterController {
+    /**
+     * Resource bundle.
+     */
+    private final ResourceBundle bundle = ResourceBundle
+            .getBundle("net/trajano/batik/internal/Messages");
 
     /**
      * Maven log to write events to. Warnings are suppressed to prevent Sonar
@@ -111,9 +117,8 @@ public class LoggingSvgConverterController implements SVGConverterController {
     @Override
     public boolean proceedWithSourceTranscoding(
             final SVGConverterSource source, final File dest) {
-        // TODO use resources.
-        mavenLogger.info("about to transcode " + source.getName() + " to "
-                + dest);
+        mavenLogger.info(String.format(bundle.getString("abouttotranscode"),
+                source.getName(), dest));
         return true;
     }
 

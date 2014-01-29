@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import net.trajano.batik.internal.SvgFont2;
 
@@ -33,6 +34,12 @@ public class FontConverterMojo extends AbstractMojo {
         defaultFontFileSet.addInclude("**/*.ttf");
         DEFAULT_FONT_FILESETS = Collections.singletonList(defaultFontFileSet);
     }
+
+    /**
+     * Resource bundle.
+     */
+    private final ResourceBundle bundle = ResourceBundle
+            .getBundle("net/trajano/batik/internal/Messages");
 
     /**
      * The directory to write the SVG files converted from TTFs.
@@ -90,8 +97,8 @@ public class FontConverterMojo extends AbstractMojo {
                             Font.create(inputFile.toString()), basename);
                     ps.close();
                 } catch (final Exception e) {
-                    throw new MojoExecutionException("Failed to render "
-                            + inputFile, e);
+                    throw new MojoExecutionException(String.format(
+                            bundle.getString("failedtorender"), inputFile), e);
                 }
             }
         }
