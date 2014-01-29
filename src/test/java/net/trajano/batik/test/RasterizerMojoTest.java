@@ -31,5 +31,8 @@ public class RasterizerMojoTest {
                 "rasterizer", testPom);
         assertNotNull(mojo);
         mojo.execute();
+
+        // TODO use BufferedImageReader to read the image and verify the color
+        // of a pixel.
     }
 }
