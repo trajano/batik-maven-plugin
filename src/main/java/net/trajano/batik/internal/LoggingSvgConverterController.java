@@ -35,7 +35,7 @@ public class LoggingSvgConverterController implements SVGConverterController {
     public void onSourceTranscodingSuccess(final SVGConverterSource source,
             final File desFile) {
         // TODO use resources.
-        mavenLogger.info("transcoded " + source.getName() + " to " + desFile);
+        mavenLogger.debug("transcoded " + source.getName() + " to " + desFile);
     }
 
     @Override
