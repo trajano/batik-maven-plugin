@@ -148,7 +148,7 @@ public class RasterizerMojo extends AbstractMojo {
             return DestinationType.PNG;
         } else if ("image/tiff".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.TIFF;
-        } else if ("image/jpg".equalsIgnoreCase(mimeTypeString)) {
+        } else if ("image/jpeg".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.JPEG;
         } else if ("application/pdf".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.PDF;
