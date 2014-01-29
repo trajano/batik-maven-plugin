@@ -22,24 +22,6 @@ public class RasterizerMojoTest {
      * @throws Exception
      */
     @Test
-    public void testExplicitMimeJpg() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/rasterizer-pom-jpg.xml");
-        assertTrue(testPom.exists());
-
-        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
-                "rasterizer", testPom);
-        assertNotNull(mojo);
-        mojo.execute();
-
-        // TODO use BufferedImageReader to read the image and verify the color
-        // of a pixel.
-    }
-
-    /**
-     * @throws Exception
-     */
-    @Test
     public void testExplicitMimePdf() throws Exception {
         final File testPom = new File(
                 "src/test/resources/net/trajano/batik/rasterizer-pom-pdf.xml");
