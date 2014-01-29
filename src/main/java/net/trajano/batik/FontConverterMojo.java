@@ -1,10 +1,14 @@
 package net.trajano.batik;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.batik.svggen.font.SVGFont;
+import net.trajano.batik.internal.SvgFont2;
+
+import org.apache.batik.svggen.font.Font;
 import org.apache.maven.model.FileSet;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -61,6 +65,7 @@ public class FontConverterMojo extends AbstractMojo {
      */
     @Override
     public void execute() throws MojoExecutionException {
+
         destDir.mkdirs();
         final DirectoryScanner scanner = new DirectoryScanner();
         if (fontFileSets == null) {
@@ -73,13 +78,21 @@ public class FontConverterMojo extends AbstractMojo {
             scanner.scan();
             for (final String includedFile : scanner.getIncludedFiles()) {
 
-                SVGFont.main(new String[] {
-                        new File(fileSet.getDirectory(), includedFile)
-                                .toString(),
-                        "-o",
-                        new File(destDir, includedFile.substring(0,
-                                includedFile.lastIndexOf('.')) + ".svg")
-                                .toString() });
+                final File inputFile = new File(fileSet.getDirectory(),
+                        includedFile);
+                try {
+                    final PrintStream ps = new PrintStream(
+                            new FileOutputStream(new File(destDir,
+                                    includedFile.substring(0,
+                                            includedFile.lastIndexOf('.'))
+                                            + ".svg")));
+                    SvgFont2.writeFontAsSvg(ps,
+                            Font.create(inputFile.toString()));
+                    ps.close();
+                } catch (final Exception e) {
+                    throw new MojoExecutionException("Failed to render "
+                            + inputFile, e);
+                }
             }
         }
 
