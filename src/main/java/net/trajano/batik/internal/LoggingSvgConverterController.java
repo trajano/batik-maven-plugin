@@ -17,16 +17,20 @@ import org.apache.maven.plugin.logging.Log;
 public class LoggingSvgConverterController implements SVGConverterController {
 
     /**
-     * Maven log to write events to.
+     * Maven log to write events to. Warnings are suppressed to prevent Sonar
+     * from warning about the logger variable name.
      */
+    @SuppressWarnings("all")
     private final Log mavenLogger;
 
     /**
-     * Creates the controller.
+     * Creates the controller. Warnings are suppressed to prevent Sonar from
+     * warning about the logger variable name.
      * 
      * @param mavenLogger
      *            logger
      */
+    @SuppressWarnings("all")
     public LoggingSvgConverterController(final Log mavenLogger) {
         this.mavenLogger = mavenLogger;
     }
