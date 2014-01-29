@@ -25,7 +25,7 @@ public class FontConverterMojo extends AbstractMojo {
 
     static {
         final FileSet defaultFontFileSet = new FileSet();
-        defaultFontFileSet.setDirectory("${basedir}/src/main/ttf");
+        defaultFontFileSet.setDirectory("src/main/ttf");
         defaultFontFileSet.addInclude("**/*.ttf");
         DEFAULT_FONT_FILESETS = Collections.singletonList(defaultFontFileSet);
     }
@@ -61,6 +61,7 @@ public class FontConverterMojo extends AbstractMojo {
      */
     @Override
     public void execute() throws MojoExecutionException {
+        destDir.mkdirs();
         final DirectoryScanner scanner = new DirectoryScanner();
         if (fontFileSets == null) {
             fontFileSets = DEFAULT_FONT_FILESETS;
