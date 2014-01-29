@@ -30,7 +30,7 @@ public class RasterizerMojo extends AbstractMojo {
 
     static {
         final Resource defaultSvgResource = new Resource();
-        defaultSvgResource.setDirectory("${basedir}/src/main/svg");
+        defaultSvgResource.setDirectory("src/main/svg");
         defaultSvgResource.addInclude("**/*.svg");
         defaultSvgResource.setFiltering(false);
         DEFAULT_SVG_RESOURCES = Collections.singletonList(defaultSvgResource);
