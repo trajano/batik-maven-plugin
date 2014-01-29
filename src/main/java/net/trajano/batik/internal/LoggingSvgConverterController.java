@@ -35,34 +35,85 @@ public class LoggingSvgConverterController implements SVGConverterController {
         this.mavenLogger = mavenLogger;
     }
 
+    /**
+     * Invoked when the rasterizer successfully transcoded the input source.
+     * 
+     * @param source
+     *            SVG source to convert
+     * @param dest
+     *            destination file
+     */
     @Override
     public void onSourceTranscodingSuccess(final SVGConverterSource source,
-            final File desFile) {
+            final File dest) {
         // TODO use resources.
-        mavenLogger.debug("transcoded " + source.getName() + " to " + desFile);
+        mavenLogger.debug("transcoded " + source.getName() + " to " + dest);
     }
 
+    /**
+     * Invoked when the rasterizer got an error while transcoding the input
+     * source. The controller should return true if the transcoding process
+     * should continue on other sources and it should return false if it should
+     * not.
+     * 
+     * @param source
+     *            SVG source to convert
+     * @param dest
+     *            destination file
+     * @param errorCode
+     *            see the {@link SVGConverter} error code descriptions.
+     * @return true if the transcoding process should continue on other sources
+     *         and it should return false if it should not.
+     */
     @Override
     public boolean proceedOnSourceTranscodingFailure(
-            final SVGConverterSource arg0, final File arg1, final String arg2) {
+            final SVGConverterSource source, final File dest,
+            final String errorCode) {
         // TODO should make this configurable
         return false;
     }
 
+    /**
+     * Invoked when the rasterizer has computed the exact description of what it
+     * should do. The controller should return true if the transcoding process
+     * should proceed or false otherwise.
+     * 
+     * @param transcoder
+     *            Transcoder which will be used
+     * @param hints
+     *            set of hints that were set on the transcoder
+     * @param sources
+     *            list of SVG sources it will convert.
+     * @param dest
+     *            list of destination file it will use
+     * @return true if the transcoding process should proceed or false
+     *         otherwise.
+     */
     @Override
     public boolean proceedWithComputedTask(final Transcoder transcoder,
-            @SuppressWarnings("rawtypes") final Map arg1,
-            @SuppressWarnings("rawtypes") final List list1,
-            @SuppressWarnings("rawtypes") final List list2) {
+            @SuppressWarnings("rawtypes") final Map hints,
+            @SuppressWarnings("rawtypes") final List sources,
+            @SuppressWarnings("rawtypes") final List dest) {
         return true;
     }
 
+    /**
+     * Invoked when the rasterizer is about to start transcoding of a given
+     * source. The controller should return true if the source should be
+     * transcoded and false otherwise.
+     * 
+     * @param source
+     *            SVG source to convert
+     * @param dest
+     *            destination file
+     * @return true if the source should be transcoded and false otherwise.
+     */
     @Override
     public boolean proceedWithSourceTranscoding(
-            final SVGConverterSource source, final File desFile) {
+            final SVGConverterSource source, final File dest) {
         // TODO use resources.
         mavenLogger.info("about to transcode " + source.getName() + " to "
-                + desFile);
+                + dest);
         return true;
     }
 
