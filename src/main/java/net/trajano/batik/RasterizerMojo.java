@@ -50,6 +50,12 @@ public class RasterizerMojo extends AbstractMojo {
     private File destDir;
 
     /**
+     * Fail on error. Otherwise it will continue to the next file.
+     */
+    @Parameter(defaultValue = "true")
+    private boolean failOnError;
+
+    /**
      * The MIME type of file to convert to. Valid values are
      * <code>image/png</code>, <code>image/jpeg</code>, <code>image/tiff</code>
      * and <code>application/pdf</code>.
@@ -84,7 +90,7 @@ public class RasterizerMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException {
         final SVGConverter converter = new SVGConverter(
-                new LoggingSvgConverterController(getLog()));
+                new LoggingSvgConverterController(getLog(), failOnError));
         converter.setDestinationType(mapMimeTypeToDestinationType(mimeType));
 
         final List<String> unfilteredSourceFiles = new LinkedList<String>();

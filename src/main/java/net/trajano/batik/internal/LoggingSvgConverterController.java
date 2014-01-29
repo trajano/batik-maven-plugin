@@ -23,6 +23,11 @@ public class LoggingSvgConverterController implements SVGConverterController {
             .getBundle("net/trajano/batik/internal/Messages");
 
     /**
+     * Fail on error.
+     */
+    private final boolean failOnError;
+
+    /**
      * Maven log to write events to. Warnings are suppressed to prevent Sonar
      * from warning about the logger variable name.
      */
@@ -35,10 +40,14 @@ public class LoggingSvgConverterController implements SVGConverterController {
      * 
      * @param mavenLogger
      *            logger
+     * @param failOnError
+     *            fail on error.
      */
     @SuppressWarnings("all")
-    public LoggingSvgConverterController(final Log mavenLogger) {
+    public LoggingSvgConverterController(final Log mavenLogger,
+            final boolean failOnError) {
         this.mavenLogger = mavenLogger;
+        this.failOnError = failOnError;
     }
 
     /**
@@ -52,8 +61,8 @@ public class LoggingSvgConverterController implements SVGConverterController {
     @Override
     public void onSourceTranscodingSuccess(final SVGConverterSource source,
             final File dest) {
-        // TODO use resources.
-        mavenLogger.debug("transcoded " + source.getName() + " to " + dest);
+        mavenLogger.info(String.format(bundle.getString("transcoded"),
+                source.getName(), dest));
     }
 
     /**
@@ -75,8 +84,9 @@ public class LoggingSvgConverterController implements SVGConverterController {
     public boolean proceedOnSourceTranscodingFailure(
             final SVGConverterSource source, final File dest,
             final String errorCode) {
-        // TODO should make this configurable
-        return false;
+        mavenLogger.error(String.format(bundle.getString("transcodefailure"),
+                source.getName(), dest, errorCode));
+        return !failOnError;
     }
 
     /**
