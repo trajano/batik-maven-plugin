@@ -1,5 +1,5 @@
 package net.trajano.batik;
-
+/** FOOOO FOO */
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
