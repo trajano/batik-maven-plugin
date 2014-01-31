@@ -14,14 +14,6 @@
 				<configuration>
 					<destDir>target/generated-resources/batik</destDir>
 					<mimeType>bad/mime</mimeType>
-					<svgResources>
-						<resource>
-							<directory>src/test/resources/net/trajano/batik</directory>
-							<includes>
-								<include>**/*.svg</include>
-							</includes>
-						</resource>
-					</svgResources>
 				</configuration>
 			</plugin>
 		</plugins>
