@@ -79,6 +79,12 @@ public class FontConverterMojo extends AbstractMojo {
             fontFileSets = DEFAULT_FONT_FILESETS;
         }
         for (final FileSet fileSet : fontFileSets) {
+            if (!new File(fileSet.getDirectory()).isDirectory()) {
+                getLog().warn(
+                        String.format(bundle.getString("missingdir"),
+                                fileSet.getDirectory()));
+                continue;
+            }
             scanner.setBasedir(fileSet.getDirectory());
             scanner.setIncludes(fileSet.getIncludes().toArray(new String[0]));
             scanner.setExcludes(fileSet.getExcludes().toArray(new String[0]));

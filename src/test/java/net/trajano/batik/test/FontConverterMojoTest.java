@@ -20,6 +20,23 @@ public class FontConverterMojoTest {
     public MojoRule rule = new MojoRule();
 
     /**
+     * Tests with just the dest directory set.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testDefault() throws Exception {
+        final File testPom = new File(
+                "src/test/resources/net/trajano/batik/default-pom.xml");
+        assertTrue(testPom.exists());
+
+        final FontConverterMojo mojo = (FontConverterMojo) rule.lookupMojo(
+                "ttf2svg", testPom);
+        assertNotNull(mojo);
+        mojo.execute();
+    }
+
+    /**
      * @throws Exception
      */
     @Test
@@ -33,4 +50,5 @@ public class FontConverterMojoTest {
         assertNotNull(mojo);
         mojo.execute();
     }
+
 }

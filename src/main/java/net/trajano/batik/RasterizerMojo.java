@@ -100,6 +100,13 @@ public class RasterizerMojo extends AbstractMojo {
             svgResources = DEFAULT_SVG_RESOURCES;
         }
         for (final Resource resource : svgResources) {
+            if (!new File(resource.getDirectory()).isDirectory()) {
+                getLog().warn(
+                        String.format(bundle.getString("missingdir"),
+                                resource.getDirectory()));
+                continue;
+            }
+
             scanner.setBasedir(resource.getDirectory());
             scanner.setIncludes(resource.getIncludes().toArray(new String[0]));
             scanner.setExcludes(resource.getExcludes().toArray(new String[0]));

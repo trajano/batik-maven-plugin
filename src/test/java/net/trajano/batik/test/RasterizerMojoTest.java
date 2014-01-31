@@ -37,6 +37,23 @@ public class RasterizerMojoTest {
     }
 
     /**
+     * Tests with a no SVG resources.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testDefaultSvgResources() throws Exception {
+        final File testPom = new File(
+                "src/test/resources/net/trajano/batik/default-svgresources-pom.xml");
+        assertTrue(testPom.exists());
+
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
+                "rasterizer", testPom);
+        assertNotNull(mojo);
+        mojo.execute();
+    }
+
+    /**
      * @throws Exception
      */
     @Test
