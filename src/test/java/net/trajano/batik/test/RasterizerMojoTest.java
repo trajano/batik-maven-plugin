@@ -7,6 +7,7 @@ import java.io.File;
 
 import net.trajano.batik.RasterizerMojo;
 
+import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.MojoRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,6 +18,23 @@ import org.junit.Test;
 public class RasterizerMojoTest {
     @Rule
     public MojoRule rule = new MojoRule();
+
+    /**
+     * Tests with a bad MIME type.
+     * 
+     * @throws Exception
+     */
+    @Test(expected = MojoExecutionException.class)
+    public void testBadMime() throws Exception {
+        final File testPom = new File(
+                "src/test/resources/net/trajano/batik/badmime-pom.xml");
+        assertTrue(testPom.exists());
+
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
+                "rasterizer", testPom);
+        assertNotNull(mojo);
+        mojo.execute();
+    }
 
     /**
      * @throws Exception
