@@ -54,6 +54,41 @@ public class RasterizerMojoTest {
     }
 
     /**
+     * Tests with a empty filtered SVG resources.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testEmptySvgResources() throws Exception {
+        final File testPom = new File(
+                "src/test/resources/net/trajano/batik/empty-svgresources-pom.xml");
+        assertTrue(testPom.exists());
+
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
+                "rasterizer", testPom);
+        assertNotNull(mojo);
+        mojo.execute();
+    }
+
+    /**
+     * @throws Exception
+     */
+    @Test
+    public void testExplicitMimeFilteredPng() throws Exception {
+        final File testPom = new File(
+                "src/test/resources/net/trajano/batik/rasterizer-pom-filtered-png.xml");
+        assertTrue(testPom.exists());
+
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
+                "rasterizer", testPom);
+        assertNotNull(mojo);
+        mojo.execute();
+
+        // TODO use BufferedImageReader to read the image and verify the color
+        // of a pixel.
+    }
+
+    /**
      * @throws Exception
      */
     @Test
@@ -102,5 +137,39 @@ public class RasterizerMojoTest {
 
         // TODO use BufferedImageReader to read the image and verify the color
         // of a pixel.
+    }
+
+    /**
+     * Tests with a invalid SVG resources.
+     * 
+     * @throws Exception
+     */
+    @Test(expected = MojoExecutionException.class)
+    public void testNonSvgResources() throws Exception {
+        final File testPom = new File(
+                "src/test/resources/net/trajano/batik/non-svgresources-pom.xml");
+        assertTrue(testPom.exists());
+
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
+                "rasterizer", testPom);
+        assertNotNull(mojo);
+        mojo.execute();
+    }
+
+    /**
+     * Tests with a invalid SVG resources without failure.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testNonSvgResourcesNoFail() throws Exception {
+        final File testPom = new File(
+                "src/test/resources/net/trajano/batik/ignore-error-svgresources-pom.xml");
+        assertTrue(testPom.exists());
+
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
+                "rasterizer", testPom);
+        assertNotNull(mojo);
+        mojo.execute();
     }
 }
