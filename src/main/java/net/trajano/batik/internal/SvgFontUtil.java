@@ -70,6 +70,6 @@ public final class SvgFontUtil extends SVGFont {
      * Prevent instantiation of utility class.
      */
     private SvgFontUtil() {
-
+        super();
     }
 }
