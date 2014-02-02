@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import net.trajano.batik.internal.SvgFont2;
+import net.trajano.batik.internal.SvgFontUtil;
 
 import org.apache.batik.svggen.font.Font;
 import org.apache.maven.model.FileSet;
@@ -99,7 +99,7 @@ public class FontConverterMojo extends AbstractMojo {
                     final PrintStream ps = new PrintStream(
                             new FileOutputStream(new File(destDir, basename
                                     + ".svg")));
-                    SvgFont2.writeFontAsSvg(ps,
+                    SvgFontUtil.writeFontAsSvg(ps,
                             Font.create(inputFile.toString()), basename);
                     ps.close();
                 } catch (final Exception e) {

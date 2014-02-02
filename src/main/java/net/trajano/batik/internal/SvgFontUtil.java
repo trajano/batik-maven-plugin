@@ -13,7 +13,7 @@ import org.apache.batik.svggen.font.SVGFont;
  * 
  * @author Archimedes Trajano
  */
-public class SvgFont2 extends SVGFont {
+public final class SvgFontUtil extends SVGFont {
     /**
      * Writes the font as an SVG file. This is a convenience method that passes
      * typical values that are used for the other parameters. Warnings are

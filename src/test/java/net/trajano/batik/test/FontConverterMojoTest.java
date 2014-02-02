@@ -7,6 +7,8 @@ import java.io.File;
 
 import net.trajano.batik.FontConverterMojo;
 import net.trajano.batik.RasterizerMojo;
+import net.trajano.batik.internal.SvgFontUtil;
+import net.trajano.commons.testing.UtilityClassTestUtil;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.MojoRule;
@@ -65,6 +67,11 @@ public class FontConverterMojoTest {
                 "ttf2svg", testPom);
         assertNotNull(mojo);
         mojo.execute();
+    }
+
+    @Test
+    public void testUtilityClass() throws Exception {
+        UtilityClassTestUtil.assertUtilityClassWellDefined(SvgFontUtil.class);
     }
 
 }
