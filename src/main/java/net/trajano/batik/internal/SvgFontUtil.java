@@ -65,4 +65,11 @@ public final class SvgFontUtil extends SVGFont {
         writeSvgDefsEnd(ps);
         writeSvgEnd(ps);
     }
+
+    /**
+     * Prevent instantiation of utility class.
+     */
+    private SvgFontUtil() {
+
+    }
 }
