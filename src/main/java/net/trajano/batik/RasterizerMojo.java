@@ -56,10 +56,24 @@ public class RasterizerMojo extends AbstractMojo {
     private boolean failOnError;
 
     /**
-     * Height to set the output to.
+     * In less than or equal to zero, the height is not constrained on the
+     * output image.
      */
     @Parameter(defaultValue = "-1")
     private float height;
+
+    /**
+     * If less than or equal to zero, the maximum height does not have any
+     * effect on the output image.
+     */
+    @Parameter(defaultValue = "-1")
+    private float maxHeight;
+    /**
+     * If less than or equal to zero, the maximum width does not have any effect
+     * on the output image.
+     */
+    @Parameter(defaultValue = "-1")
+    private float maxWidth;
 
     /**
      * The MIME type of file to convert to. Valid values are
@@ -68,6 +82,7 @@ public class RasterizerMojo extends AbstractMojo {
      */
     @Parameter(defaultValue = "image/png", required = true)
     private String mimeType;
+
     /**
      * A list of SVG resources to import. {@link Resource} is used instead of
      * FileSet to allow for filtering in the future. The default is:
@@ -90,7 +105,8 @@ public class RasterizerMojo extends AbstractMojo {
     private List<Resource> svgResources;
 
     /**
-     * Width to set the output to.
+     * In less than or equal to zero, the width is not constrained on the output
+     * image.
      */
     @Parameter(defaultValue = "-1")
     private float width;
@@ -137,6 +153,8 @@ public class RasterizerMojo extends AbstractMojo {
         converter.setDst(destDir);
         converter.setWidth(width);
         converter.setHeight(height);
+        converter.setMaxWidth(maxWidth);
+        converter.setMaxHeight(maxHeight);
         try {
             if (!filteredSourceFiles.isEmpty()) {
                 converter
