@@ -1,9 +1,13 @@
 package net.trajano.batik.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+
+import javax.imageio.ImageIO;
 
 import net.trajano.batik.RasterizerMojo;
 
@@ -84,8 +88,10 @@ public class RasterizerMojoTest {
         assertNotNull(mojo);
         mojo.execute();
 
-        // TODO use BufferedImageReader to read the image and verify the color
-        // of a pixel.
+        final BufferedImage image = ImageIO.read(new File(
+                "target/generated-resources/batik/logo.png"));
+        assertEquals(500, image.getWidth());
+        assertEquals(500, image.getHeight());
     }
 
     /**
@@ -117,8 +123,10 @@ public class RasterizerMojoTest {
         assertNotNull(mojo);
         mojo.execute();
 
-        // TODO use BufferedImageReader to read the image and verify the color
-        // of a pixel.
+        final BufferedImage image = ImageIO.read(new File(
+                "target/generated-resources/batik/logo.png"));
+        assertEquals(100, image.getWidth());
+        assertEquals(100, image.getHeight());
     }
 
     /**
