@@ -1,4 +1,6 @@
-package net.trajano.batik;
+package net.trajano.mojo.batik;
+
+import static java.lang.String.format;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import net.trajano.batik.internal.SvgFontUtil;
+import net.trajano.mojo.batik.internal.SvgFontUtil;
 
 import org.apache.batik.svggen.font.Font;
 import org.apache.maven.model.FileSet;
@@ -28,18 +30,18 @@ public class FontConverterMojo extends AbstractMojo {
      */
     private static final List<FileSet> DEFAULT_FONT_FILESETS;
 
+    /**
+     * Resource bundle.
+     */
+    private static final ResourceBundle R = ResourceBundle
+            .getBundle("META-INF/Messages");
+
     static {
         final FileSet defaultFontFileSet = new FileSet();
         defaultFontFileSet.setDirectory("src/main/ttf");
         defaultFontFileSet.addInclude("**/*.ttf");
         DEFAULT_FONT_FILESETS = Collections.singletonList(defaultFontFileSet);
     }
-
-    /**
-     * Resource bundle.
-     */
-    private final ResourceBundle bundle = ResourceBundle
-            .getBundle("net/trajano/batik/internal/Messages");
 
     /**
      * The directory to write the SVG files converted from TTFs.
@@ -50,7 +52,7 @@ public class FontConverterMojo extends AbstractMojo {
     /**
      * A list of font file sets to import. Filtering is not supported on fonts.
      * The default is:
-     * 
+     *
      * <pre>
      * &lt;fontFileSets>
      *     &lt;fileSet>
@@ -68,9 +70,11 @@ public class FontConverterMojo extends AbstractMojo {
     private List<FileSet> fontFileSets;
 
     /**
-     * {@inheritDoc}
+     * Performs the conversion.
+     *
+     * @throws MojoExecutionException
+     *             thrown when there is a problem executing Mjo.
      */
-    @Override
     public void execute() throws MojoExecutionException {
 
         destDir.mkdirs();
@@ -79,32 +83,31 @@ public class FontConverterMojo extends AbstractMojo {
             fontFileSets = DEFAULT_FONT_FILESETS;
         }
         for (final FileSet fileSet : fontFileSets) {
-            if (!new File(fileSet.getDirectory()).isDirectory()) {
-                getLog().warn(
-                        String.format(bundle.getString("missingdir"),
-                                fileSet.getDirectory()));
+            final String directory = fileSet.getDirectory();
+            if (!new File(directory).isDirectory()) { // NOPMD
+                getLog().warn(format(R.getString("missingdir"), directory));
                 continue;
             }
-            scanner.setBasedir(fileSet.getDirectory());
-            scanner.setIncludes(fileSet.getIncludes().toArray(new String[0]));
-            scanner.setExcludes(fileSet.getExcludes().toArray(new String[0]));
+            scanner.setBasedir(directory);
+            scanner.setIncludes(fileSet.getIncludes().toArray(new String[0])); // NOPMD
+            scanner.setExcludes(fileSet.getExcludes().toArray(new String[0])); // NOPMD
             scanner.scan();
             for (final String includedFile : scanner.getIncludedFiles()) {
 
-                final File inputFile = new File(fileSet.getDirectory(),
+                final File inputFile = new File(directory, // NOPMD
                         includedFile);
                 final String basename = includedFile.substring(0,
                         includedFile.lastIndexOf('.'));
+                final File svgFile = new File(destDir, basename + ".svg"); // NOPMD
                 try {
-                    final PrintStream ps = new PrintStream(
-                            new FileOutputStream(new File(destDir, basename
-                                    + ".svg")));
+                    final PrintStream ps = new PrintStream(// NOPMD
+                            new FileOutputStream(svgFile)); // NOPMD
                     SvgFontUtil.writeFontAsSvg(ps,
                             Font.create(inputFile.toString()), basename);
                     ps.close();
                 } catch (final Exception e) {
                     throw new MojoExecutionException(String.format(
-                            bundle.getString("failedtorender"), inputFile), e);
+                            R.getString("failedtorender"), inputFile), e);
                 }
             }
         }

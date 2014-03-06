@@ -1,4 +1,6 @@
-package net.trajano.batik;
+package net.trajano.mojo.batik;
+
+import static java.lang.String.format;
 
 import java.io.File;
 import java.util.Collections;
@@ -6,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import net.trajano.batik.internal.LoggingSvgConverterController;
+import net.trajano.mojo.batik.internal.LoggingSvgConverterController;
 
 import org.apache.batik.apps.rasterizer.DestinationType;
 import org.apache.batik.apps.rasterizer.SVGConverter;
@@ -29,6 +31,12 @@ public class RasterizerMojo extends AbstractMojo {
      */
     private static final List<Resource> DEFAULT_SVG_RESOURCES;
 
+    /**
+     * Resource bundle.
+     */
+    private static final ResourceBundle R = ResourceBundle
+            .getBundle("META-INF/Messages");
+
     static {
         final Resource defaultSvgResource = new Resource();
         defaultSvgResource.setDirectory("src/main/svg");
@@ -36,12 +44,6 @@ public class RasterizerMojo extends AbstractMojo {
         defaultSvgResource.setFiltering(false);
         DEFAULT_SVG_RESOURCES = Collections.singletonList(defaultSvgResource);
     }
-
-    /**
-     * Resource bundle.
-     */
-    private final ResourceBundle bundle = ResourceBundle
-            .getBundle("net/trajano/batik/internal/Messages");
 
     /**
      * The directory to write the rasterized SVG files.
@@ -86,7 +88,7 @@ public class RasterizerMojo extends AbstractMojo {
     /**
      * A list of SVG resources to import. {@link Resource} is used instead of
      * FileSet to allow for filtering in the future. The default is:
-     * 
+     *
      * <pre>
      * &lt;svgResources>
      *     &lt;resource>
@@ -112,9 +114,11 @@ public class RasterizerMojo extends AbstractMojo {
     private float width;
 
     /**
-     * {@inheritDoc}
+     * Performs the rasterization.
+     *
+     * @throws MojoExecutionException
+     *             thrown when there is a problem executing Mjo.
      */
-    @Override
     public void execute() throws MojoExecutionException {
         final SVGConverter converter = new SVGConverter(
                 new LoggingSvgConverterController(getLog(), failOnError));
@@ -127,25 +131,25 @@ public class RasterizerMojo extends AbstractMojo {
             svgResources = DEFAULT_SVG_RESOURCES;
         }
         for (final Resource resource : svgResources) {
-            if (!new File(resource.getDirectory()).isDirectory()) {
+            if (!new File(resource.getDirectory()).isDirectory()) { // NOPMD
                 getLog().warn(
-                        String.format(bundle.getString("missingdir"),
+                        format(R.getString("missingdir"),
                                 resource.getDirectory()));
                 continue;
             }
 
             scanner.setBasedir(resource.getDirectory());
-            scanner.setIncludes(resource.getIncludes().toArray(new String[0]));
-            scanner.setExcludes(resource.getExcludes().toArray(new String[0]));
+            scanner.setIncludes(resource.getIncludes().toArray(new String[0])); // NOPMD
+            scanner.setExcludes(resource.getExcludes().toArray(new String[0])); // NOPMD
             scanner.scan();
             for (final String includedFile : scanner.getIncludedFiles()) {
                 if (resource.isFiltering()) {
                     // TODO write out filtered file to batik folder and use the
                     // filtered file as input.
-                    filteredSourceFiles.add(new File(resource.getDirectory(),
+                    filteredSourceFiles.add(new File(resource.getDirectory(), // NOPMD
                             includedFile).toString());
                 } else {
-                    unfilteredSourceFiles.add(new File(resource.getDirectory(),
+                    unfilteredSourceFiles.add(new File(resource.getDirectory(), // NOPMD
                             includedFile).toString());
                 }
             }
@@ -158,7 +162,7 @@ public class RasterizerMojo extends AbstractMojo {
         try {
             if (!filteredSourceFiles.isEmpty()) {
                 converter
-                        .setSources(filteredSourceFiles.toArray(new String[0]));
+                .setSources(filteredSourceFiles.toArray(new String[0]));
                 converter.execute();
             }
             if (!unfilteredSourceFiles.isEmpty()) {
@@ -168,13 +172,13 @@ public class RasterizerMojo extends AbstractMojo {
             }
         } catch (final SVGConverterException e) {
             throw new MojoExecutionException(
-                    bundle.getString("errorduringconversion"), e);
+                    R.getString("errorduringconversion"), e);
         }
     }
 
     /**
      * Maps a MIME type string to the {@link DestinationType}.
-     * 
+     *
      * @param mimeTypeString
      *            MIME type string
      * @return destination type
@@ -192,7 +196,7 @@ public class RasterizerMojo extends AbstractMojo {
             return DestinationType.PDF;
         } else {
             throw new MojoExecutionException(String.format(
-                    bundle.getString("unsupportedmimetype"), mimeTypeString));
+                    R.getString("unsupportedmimetype"), mimeTypeString));
         }
     }
 }

@@ -1,4 +1,4 @@
-package net.trajano.batik.test;
+package net.trajano.mojo.batik.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,7 +9,7 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
-import net.trajano.batik.RasterizerMojo;
+import net.trajano.mojo.batik.RasterizerMojo;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.MojoRule;

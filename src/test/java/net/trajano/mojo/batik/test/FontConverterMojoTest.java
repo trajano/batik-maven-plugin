@@ -1,14 +1,14 @@
-package net.trajano.batik.test;
+package net.trajano.mojo.batik.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
-import net.trajano.batik.FontConverterMojo;
-import net.trajano.batik.RasterizerMojo;
-import net.trajano.batik.internal.SvgFontUtil;
 import net.trajano.commons.testing.UtilityClassTestUtil;
+import net.trajano.mojo.batik.FontConverterMojo;
+import net.trajano.mojo.batik.RasterizerMojo;
+import net.trajano.mojo.batik.internal.SvgFontUtil;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.MojoRule;

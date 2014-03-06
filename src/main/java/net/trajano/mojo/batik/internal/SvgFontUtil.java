@@ -1,8 +1,6 @@
-package net.trajano.batik.internal;
+package net.trajano.mojo.batik.internal;
 
 import java.io.PrintStream;
-
-import javax.annotation.Nullable;
 
 import org.apache.batik.svggen.font.Font;
 import org.apache.batik.svggen.font.SVGFont;
@@ -10,7 +8,7 @@ import org.apache.batik.svggen.font.SVGFont;
 /**
  * {@link SVGFont} with the {@link SVGFont#main(String[])} method rewritten as a
  * function.
- * 
+ *
  * @author Archimedes Trajano
  */
 public final class SvgFontUtil extends SVGFont {
@@ -19,7 +17,7 @@ public final class SvgFontUtil extends SVGFont {
      * typical values that are used for the other parameters. Warnings are
      * suppressed to prevent Sonar from complaining about throwing an
      * {@link Exception}.
-     * 
+     *
      * @param ps
      *            print stream to write to. (does not get closed)
      * @param font
@@ -38,7 +36,7 @@ public final class SvgFontUtil extends SVGFont {
      * Writes the font as an SVG file. This is from a segment of code from
      * {@link SVGFont#main(String[])}. Warnings are suppressed to prevent Sonar
      * from complaining about throwing an {@link Exception}.
-     * 
+     *
      * @param ps
      *            print stream to write to. (does not get closed)
      * @param font
@@ -57,7 +55,7 @@ public final class SvgFontUtil extends SVGFont {
      */
     @SuppressWarnings("all")
     public static void writeFontAsSvg(final PrintStream ps, final Font font,
-            @Nullable final String id, final int first, final int last,
+            final String id, final int first, final int last,
             final boolean autoRange, final boolean forceAscii) throws Exception {
         writeSvgBegin(ps);
         writeSvgDefsBegin(ps);
