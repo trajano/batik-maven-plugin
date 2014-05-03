@@ -13,6 +13,7 @@
 				<artifactId>batik-maven-plugin</artifactId>
 				<configuration>
 					<destDir>target/generated-resources/batik</destDir>
+					<project implementation="org.apache.maven.plugin.testing.stubs.MavenProjectStub" />
 				</configuration>
 			</plugin>
 		</plugins>

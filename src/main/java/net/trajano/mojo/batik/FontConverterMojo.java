@@ -3,7 +3,6 @@ package net.trajano.mojo.batik;
 import static java.lang.String.format;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
@@ -15,33 +14,30 @@ import org.apache.batik.svggen.font.Font;
 import org.apache.maven.model.FileSet;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
-import org.codehaus.plexus.util.DirectoryScanner;
+import org.apache.maven.project.MavenProject;
+import org.codehaus.plexus.util.Scanner;
+import org.sonatype.plexus.build.incremental.BuildContext;
 
 /**
  * Executes the Batik Font converter.
  */
 @Mojo(name = "ttf2svg", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, threadSafe = true)
 public class FontConverterMojo extends AbstractMojo {
-    /**
-     * Default font filesets.
-     */
-    private static final List<FileSet> DEFAULT_FONT_FILESETS;
 
     /**
      * Resource bundle.
      */
     private static final ResourceBundle R = ResourceBundle
             .getBundle("META-INF/Messages");
-
-    static {
-        final FileSet defaultFontFileSet = new FileSet();
-        defaultFontFileSet.setDirectory("src/main/ttf");
-        defaultFontFileSet.addInclude("**/*.ttf");
-        DEFAULT_FONT_FILESETS = Collections.singletonList(defaultFontFileSet);
-    }
+    /**
+     * Build context.
+     */
+    @Component
+    private BuildContext buildContext;
 
     /**
      * The directory to write the SVG files converted from TTFs.
@@ -70,38 +66,49 @@ public class FontConverterMojo extends AbstractMojo {
     private List<FileSet> fontFileSets;
 
     /**
+     * The Maven Project.
+     */
+    @Component
+    private MavenProject project;
+
+    /**
      * Performs the conversion.
      *
      * @throws MojoExecutionException
      *             thrown when there is a problem executing Mjo.
      */
+    @Override
     public void execute() throws MojoExecutionException {
 
         destDir.mkdirs();
-        final DirectoryScanner scanner = new DirectoryScanner();
         if (fontFileSets == null) {
-            fontFileSets = DEFAULT_FONT_FILESETS;
+            final FileSet defaultFontFileSet = new FileSet();
+            defaultFontFileSet.setDirectory(new File(project.getBasedir(),
+                    "src/main/ttf").getPath());
+            defaultFontFileSet.addInclude("**/*.ttf");
+            fontFileSets = Collections.singletonList(defaultFontFileSet);
         }
         for (final FileSet fileSet : fontFileSets) {
             final String directory = fileSet.getDirectory();
-            if (!new File(directory).isDirectory()) { // NOPMD
+            final File baseDirectory = new File(directory); // NOPMD
+            if (!baseDirectory.isDirectory()) { // NOPMD
                 getLog().warn(format(R.getString("missingdir"), directory));
                 continue;
             }
-            scanner.setBasedir(directory);
+            final Scanner scanner = buildContext.newScanner(baseDirectory);
             scanner.setIncludes(fileSet.getIncludes().toArray(new String[0])); // NOPMD
             scanner.setExcludes(fileSet.getExcludes().toArray(new String[0])); // NOPMD
             scanner.scan();
             for (final String includedFile : scanner.getIncludedFiles()) {
 
-                final File inputFile = new File(directory, // NOPMD
+                final File inputFile = new File(baseDirectory, // NOPMD
                         includedFile);
                 final String basename = includedFile.substring(0,
                         includedFile.lastIndexOf('.'));
                 final File svgFile = new File(destDir, basename + ".svg"); // NOPMD
                 try {
                     final PrintStream ps = new PrintStream(// NOPMD
-                            new FileOutputStream(svgFile)); // NOPMD
+                            buildContext.newFileOutputStream(svgFile));
                     SvgFontUtil.writeFontAsSvg(ps,
                             Font.create(inputFile.toString()), basename);
                     ps.close();

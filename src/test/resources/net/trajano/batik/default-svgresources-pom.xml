@@ -14,6 +14,7 @@
 				<configuration>
 					<destDir>target/generated-resources/batik</destDir>
 					<mimeType>image/jpeg</mimeType>
+					<project implementation="org.apache.maven.plugin.testing.stubs.MavenProjectStub" />
 				</configuration>
 			</plugin>
 		</plugins>
