@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>LoggingSvgConverterController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Batik Maven Plugin</a> &gt; <a href="index.source.html" class="el_package">net.trajano.mojo.batik.internal</a> &gt; <span class="el_source">LoggingSvgConverterController.java</span></div><h1>LoggingSvgConverterController.java</h1><pre class="source lang-java linenums">package net.trajano.mojo.batik.internal;
+
+import java.io.File;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+
+import org.apache.batik.apps.rasterizer.SVGConverterController;
+import org.apache.batik.apps.rasterizer.SVGConverterSource;
+import org.apache.batik.transcoder.Transcoder;
+import org.apache.maven.plugin.logging.Log;
+
+/**
+ * An {@link SVGConverterController} that logs events to the Maven logs.
+ *
+ * @author Archimedes
+ */
+public class LoggingSvgConverterController implements SVGConverterController {
+    /**
+     * Resource bundle.
+     */
+<span class="fc" id="L22">    private final ResourceBundle bundle = ResourceBundle</span>
+            .getBundle(&quot;META-INF/Messages&quot;);
+
+    /**
+     * Fail on error.
+     */
+    private final boolean failOnError;
+
+    /**
+     * Maven log to write events to. Warnings are suppressed to prevent Sonar
+     * from warning about the logger variable name.
+     */
+    @SuppressWarnings(&quot;all&quot;)
+    private final Log mavenLogger;
+
+    /**
+     * Creates the controller. Warnings are suppressed to prevent Sonar from
+     * warning about the logger variable name.
+     *
+     * @param mavenLogger
+     *            logger
+     * @param failOnError
+     *            fail on error.
+     */
+    @SuppressWarnings(&quot;all&quot;)
+    public LoggingSvgConverterController(final Log mavenLogger,
+<span class="fc" id="L48">            final boolean failOnError) {</span>
+<span class="fc" id="L49">        this.mavenLogger = mavenLogger;</span>
+<span class="fc" id="L50">        this.failOnError = failOnError;</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Invoked when the rasterizer successfully transcoded the input source.
+     *
+     * @param source
+     *            SVG source to convert
+     * @param dest
+     *            destination file
+     */
+    public void onSourceTranscodingSuccess(final SVGConverterSource source,
+            final File dest) {
+<span class="fc" id="L63">        mavenLogger.info(String.format(bundle.getString(&quot;transcoded&quot;),</span>
+                source.getName(), dest));
+<span class="fc" id="L65">    }</span>
+
+    /**
+     * Invoked when the rasterizer got an error while transcoding the input
+     * source. The controller should return true if the transcoding process
+     * should continue on other sources and it should return false if it should
+     * not.
+     *
+     * @param source
+     *            SVG source to convert
+     * @param dest
+     *            destination file
+     * @param errorCode
+     *            see the {@link SVGConverter} error code descriptions.
+     * @return true if the transcoding process should continue on other sources
+     *         and it should return false if it should not.
+     */
+    public boolean proceedOnSourceTranscodingFailure(
+            final SVGConverterSource source, final File dest,
+            final String errorCode) {
+<span class="fc" id="L85">        mavenLogger.error(String.format(bundle.getString(&quot;transcodefailure&quot;),</span>
+                source.getName(), dest, errorCode));
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        return !failOnError;</span>
+    }
+
+    /**
+     * Invoked when the rasterizer has computed the exact description of what it
+     * should do. The controller should return true if the transcoding process
+     * should proceed or false otherwise.
+     *
+     * @param transcoder
+     *            Transcoder which will be used
+     * @param hints
+     *            set of hints that were set on the transcoder
+     * @param sources
+     *            list of SVG sources it will convert.
+     * @param dest
+     *            list of destination file it will use
+     * @return true if the transcoding process should proceed or false
+     *         otherwise.
+     */
+    public boolean proceedWithComputedTask(final Transcoder transcoder,
+            @SuppressWarnings(&quot;rawtypes&quot;) final Map hints,
+            @SuppressWarnings(&quot;rawtypes&quot;) final List sources,
+            @SuppressWarnings(&quot;rawtypes&quot;) final List dest) {
+<span class="fc" id="L110">        return true;</span>
+    }
+
+    /**
+     * Invoked when the rasterizer is about to start transcoding of a given
+     * source. The controller should return true if the source should be
+     * transcoded and false otherwise.
+     *
+     * @param source
+     *            SVG source to convert
+     * @param dest
+     *            destination file
+     * @return true if the source should be transcoded and false otherwise.
+     */
+    public boolean proceedWithSourceTranscoding(
+            final SVGConverterSource source, final File dest) {
+<span class="fc" id="L126">        mavenLogger.info(String.format(bundle.getString(&quot;abouttotranscode&quot;),</span>
+                source.getName(), dest));
+<span class="fc" id="L128">        return true;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

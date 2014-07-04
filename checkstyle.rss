@@ -20,19 +20,19 @@ under the License.
 <rss version="0.91">
   <channel>
     <title>Batik Maven Plugin - Checkstyle report</title>
-    <link>http://site.trajano.net/batik-maven-plugin/batik-maven-plugin/</link>
+    <link>http://site.trajano.net/trajano/batik-maven-plugin/</link>
     <description>Batik Maven Plugin - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2012 - 2014 Trajano</copyright>
     <item>
       <title>File: 7,
-             Errors: 0,
+             Errors: 211,
              Warnings: 0,
              Infos: 0
       </title>
-            <link>http://site.trajano.net/batik-maven-plugin/batik-maven-plugin//checkstyle.html</link>
+            <link>http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html</link>
       <description>
-        <p>Click <a href="http://site.trajano.net/batik-maven-plugin/batik-maven-plugin//checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,7 +46,63 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://site.trajano.net/batik-maven-plugin/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.internal.SvgFontUtil.java">net/trajano/mojo/batik/internal/SvgFontUtil.java</a>
+                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.internal.SvgFontUtil.java">net/trajano/mojo/batik/internal/SvgFontUtil.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.internal.LoggingSvgConverterController.java">net/trajano/mojo/batik/internal/LoggingSvgConverterController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.FontConverterMojo.java">net/trajano/mojo/batik/FontConverterMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.RasterizerMojo.java">net/trajano/mojo/batik/RasterizerMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  194
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#META-INF.Messages.properties">META-INF/Messages.properties</a>
                 </td>
                 <td>
                   0
@@ -60,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://site.trajano.net/batik-maven-plugin/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.internal.LoggingSvgConverterController.java">net/trajano/mojo/batik/internal/LoggingSvgConverterController.java</a>
+                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.internal.package-info.java">net/trajano/mojo/batik/internal/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://site.trajano.net/batik-maven-plugin/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.FontConverterMojo.java">net/trajano/mojo/batik/FontConverterMojo.java</a>
+                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.package-info.java">net/trajano/mojo/batik/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -83,63 +139,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://site.trajano.net/batik-maven-plugin/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.RasterizerMojo.java">net/trajano/mojo/batik/RasterizerMojo.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://site.trajano.net/batik-maven-plugin/batik-maven-plugin//checkstyle.html#META-INF.Messages.properties">META-INF/Messages.properties</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://site.trajano.net/batik-maven-plugin/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.internal.package-info.java">net/trajano/mojo/batik/internal/package-info.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://site.trajano.net/batik-maven-plugin/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.package-info.java">net/trajano/mojo/batik/package-info.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  1
                 </td>
               </tr>
                       </tbody>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SvgFontUtil.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Batik Maven Plugin</a> &gt; <a href="index.source.html" class="el_package">net.trajano.mojo.batik.internal</a> &gt; <span class="el_source">SvgFontUtil.java</span></div><h1>SvgFontUtil.java</h1><pre class="source lang-java linenums">package net.trajano.mojo.batik.internal;
+
+import java.io.PrintStream;
+
+import org.apache.batik.svggen.font.Font;
+import org.apache.batik.svggen.font.SVGFont;
+
+/**
+ * {@link SVGFont} with the {@link SVGFont#main(String[])} method rewritten as a
+ * function.
+ *
+ * @author Archimedes Trajano
+ */
+public final class SvgFontUtil extends SVGFont {
+    /**
+     * Writes the font as an SVG file. This is a convenience method that passes
+     * typical values that are used for the other parameters. Warnings are
+     * suppressed to prevent Sonar from complaining about throwing an
+     * {@link Exception}.
+     *
+     * @param ps
+     *            print stream to write to. (does not get closed)
+     * @param font
+     *            font to render
+     * @param id
+     *            ID of the font
+     * @throws Exception
+     */
+    @SuppressWarnings(&quot;all&quot;)
+    public static void writeFontAsSvg(final PrintStream ps, final Font font,
+            final String id) throws Exception {
+<span class="fc" id="L32">        writeFontAsSvg(ps, font, id, -1, -1, true, false);</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Writes the font as an SVG file. This is from a segment of code from
+     * {@link SVGFont#main(String[])}. Warnings are suppressed to prevent Sonar
+     * from complaining about throwing an {@link Exception}.
+     *
+     * @param ps
+     *            print stream to write to. (does not get closed)
+     * @param font
+     *            font to render
+     * @param id
+     *            ID of the font
+     * @param first
+     *            first character index to render, may be -1
+     * @param last
+     *            last character index to render, may be -1
+     * @param autoRange
+     *            find out the range automatically
+     * @param forceAscii
+     *            force ASCII range
+     * @throws Exception
+     */
+    @SuppressWarnings(&quot;all&quot;)
+    public static void writeFontAsSvg(final PrintStream ps, final Font font,
+            final String id, final int first, final int last,
+            final boolean autoRange, final boolean forceAscii) throws Exception {
+<span class="fc" id="L60">        writeSvgBegin(ps);</span>
+<span class="fc" id="L61">        writeSvgDefsBegin(ps);</span>
+<span class="fc" id="L62">        writeFontAsSVGFragment(ps, font, id, first, last, autoRange, forceAscii);</span>
+<span class="fc" id="L63">        writeSvgDefsEnd(ps);</span>
+<span class="fc" id="L64">        writeSvgEnd(ps);</span>
+<span class="fc" id="L65">    }</span>
+
+    /**
+     * Prevent instantiation of utility class.
+     */
+    private SvgFontUtil() {
+<span class="fc" id="L71">        super();</span>
+<span class="fc" id="L72">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>
