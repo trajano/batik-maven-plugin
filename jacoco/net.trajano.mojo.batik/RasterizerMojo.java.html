@@ -30,181 +30,182 @@ import org.sonatype.plexus.build.incremental.BuildContext;
 @Mojo(name = &quot;rasterizer&quot;, defaultPhase = LifecyclePhase.GENERATE_RESOURCES, threadSafe = true, requiresOnline = false)
 <span class="fc" id="L31">public class RasterizerMojo extends AbstractMojo {</span>
 
-	/**
-	 * Resource bundle.
-	 */
-<span class="fc" id="L36">	private static final ResourceBundle R = ResourceBundle</span>
-			.getBundle(&quot;META-INF/Messages&quot;);
+    /**
+     * Resource bundle.
+     */
+<span class="fc" id="L36">    private static final ResourceBundle R = ResourceBundle</span>
+            .getBundle(&quot;META-INF/Messages&quot;);
 
-	/**
-	 * Build context.
-	 */
-	@Component
-	private BuildContext buildContext;
+    /**
+     * Build context.
+     */
+    @Component
+    private BuildContext buildContext;
 
-	/**
-	 * The Maven Project.
-	 */
-	@Component
-	private MavenProject project;
+    /**
+     * The directory to write the rasterized SVG files.
+     */
+    @Parameter(defaultValue = &quot;${project.build.directory}/generated-resources/batik&quot;, required = true)
+    private File destDir;
 
-	/**
-	 * The directory to write the rasterized SVG files.
-	 */
-	@Parameter(defaultValue = &quot;${project.build.directory}/generated-resources/batik&quot;, required = true)
-	private File destDir;
+    /**
+     * Fail on error. Otherwise it will continue to the next file.
+     */
+    @Parameter(defaultValue = &quot;true&quot;)
+    private boolean failOnError;
 
-	/**
-	 * Fail on error. Otherwise it will continue to the next file.
-	 */
-	@Parameter(defaultValue = &quot;true&quot;)
-	private boolean failOnError;
+    /**
+     * In less than or equal to zero, the height is not constrained on the
+     * output image.
+     */
+    @Parameter(defaultValue = &quot;-1&quot;)
+    private float height;
 
-	/**
-	 * In less than or equal to zero, the height is not constrained on the
-	 * output image.
-	 */
-	@Parameter(defaultValue = &quot;-1&quot;)
-	private float height;
+    /**
+     * If less than or equal to zero, the maximum height does not have any
+     * effect on the output image.
+     */
+    @Parameter(defaultValue = &quot;-1&quot;)
+    private float maxHeight;
 
-	/**
-	 * If less than or equal to zero, the maximum height does not have any
-	 * effect on the output image.
-	 */
-	@Parameter(defaultValue = &quot;-1&quot;)
-	private float maxHeight;
-	/**
-	 * If less than or equal to zero, the maximum width does not have any effect
-	 * on the output image.
-	 */
-	@Parameter(defaultValue = &quot;-1&quot;)
-	private float maxWidth;
+    /**
+     * If less than or equal to zero, the maximum width does not have any effect
+     * on the output image.
+     */
+    @Parameter(defaultValue = &quot;-1&quot;)
+    private float maxWidth;
+    /**
+     * The MIME type of file to convert to. Valid values are
+     * &lt;code&gt;image/png&lt;/code&gt;, &lt;code&gt;image/jpeg&lt;/code&gt;, &lt;code&gt;image/tiff&lt;/code&gt;
+     * and &lt;code&gt;application/pdf&lt;/code&gt;.
+     */
+    @Parameter(defaultValue = &quot;image/png&quot;, required = true)
+    private String mimeType;
 
-	/**
-	 * The MIME type of file to convert to. Valid values are
-	 * &lt;code&gt;image/png&lt;/code&gt;, &lt;code&gt;image/jpeg&lt;/code&gt;, &lt;code&gt;image/tiff&lt;/code&gt;
-	 * and &lt;code&gt;application/pdf&lt;/code&gt;.
-	 */
-	@Parameter(defaultValue = &quot;image/png&quot;, required = true)
-	private String mimeType;
+    /**
+     * The Maven Project.
+     */
+    @Parameter(name = &quot;${project}&quot;, readonly = true)
+    private MavenProject project;
 
-	/**
-	 * A list of SVG resources to import. {@link Resource} is used instead of
-	 * FileSet to allow for filtering in the future. The default is:
-	 *
-	 * &lt;pre&gt;
-	 * &amp;lt;svgResources&gt;
-	 *     &amp;lt;resource&gt;
-	 *         &amp;lt;directory&gt;${basedir}/src/main/svg&amp;lt;/directory&gt;
-	 *         &amp;lt;filtering&gt;false&amp;lt;/filtering&gt;
-	 *         &amp;lt;includes&gt;
-	 *             &amp;lt;include&gt;**\/\*.svg&amp;lt;/include&gt;
-	 *         &amp;lt;/includes&gt;
-	 *         &amp;lt;excludes&gt;
-	 *         &amp;lt;/excludes&gt;
-	 *     &amp;lt;/resources&gt;
-	 * &amp;lt;/svgResources&gt;
-	 * &lt;/pre&gt;
-	 */
-	@Parameter(required = false)
-	private List&lt;Resource&gt; svgResources;
+    /**
+     * A list of SVG resources to import. {@link Resource} is used instead of
+     * FileSet to allow for filtering in the future. The default is:
+     *
+     * &lt;pre&gt;
+     * &amp;lt;svgResources&gt;
+     *     &amp;lt;resource&gt;
+     *         &amp;lt;directory&gt;${basedir}/src/main/svg&amp;lt;/directory&gt;
+     *         &amp;lt;filtering&gt;false&amp;lt;/filtering&gt;
+     *         &amp;lt;includes&gt;
+     *             &amp;lt;include&gt;**\/\*.svg&amp;lt;/include&gt;
+     *         &amp;lt;/includes&gt;
+     *         &amp;lt;excludes&gt;
+     *         &amp;lt;/excludes&gt;
+     *     &amp;lt;/resources&gt;
+     * &amp;lt;/svgResources&gt;
+     * &lt;/pre&gt;
+     */
+    @Parameter(required = false)
+    private List&lt;Resource&gt; svgResources;
 
-	/**
-	 * In less than or equal to zero, the width is not constrained on the output
-	 * image.
-	 */
-	@Parameter(defaultValue = &quot;-1&quot;)
-	private float width;
+    /**
+     * In less than or equal to zero, the width is not constrained on the output
+     * image.
+     */
+    @Parameter(defaultValue = &quot;-1&quot;)
+    private float width;
 
-	/**
-	 * Performs the rasterization.
-	 *
-	 * @throws MojoExecutionException
-	 *             thrown when there is a problem executing Mjo.
-	 */
-	public void execute() throws MojoExecutionException {
-<span class="fc" id="L126">		final SVGConverter converter = new SVGConverter(</span>
-				new LoggingSvgConverterController(getLog(), failOnError));
-<span class="fc" id="L128">		converter.setDestinationType(mapMimeTypeToDestinationType(mimeType));</span>
+    /**
+     * Performs the rasterization.
+     *
+     * @throws MojoExecutionException
+     *             thrown when there is a problem executing Mjo.
+     */
+    @Override
+    public void execute() throws MojoExecutionException {
+<span class="fc" id="L127">        final SVGConverter converter = new SVGConverter(</span>
+                new LoggingSvgConverterController(getLog(), failOnError));
+<span class="fc" id="L129">        converter.setDestinationType(mapMimeTypeToDestinationType(mimeType));</span>
 
-<span class="fc" id="L130">		final List&lt;String&gt; unfilteredSourceFiles = new LinkedList&lt;String&gt;();</span>
-<span class="fc" id="L131">		final List&lt;String&gt; filteredSourceFiles = new LinkedList&lt;String&gt;();</span>
-<span class="fc bfc" id="L132" title="All 2 branches covered.">		if (svgResources == null) {</span>
-<span class="fc" id="L133">			final Resource defaultSvgResource = new Resource();</span>
-<span class="fc" id="L134">			defaultSvgResource.setDirectory(new File(project.getBasedir(),</span>
-					&quot;src/main/svg&quot;).getPath());
-<span class="fc" id="L136">			defaultSvgResource.addInclude(&quot;**/*.svg&quot;);</span>
-<span class="fc" id="L137">			defaultSvgResource.setFiltering(false);</span>
-<span class="fc" id="L138">			svgResources = Collections.singletonList(defaultSvgResource);</span>
-		}
-<span class="fc bfc" id="L140" title="All 2 branches covered.">		for (final Resource resource : svgResources) {</span>
-<span class="fc" id="L141">			final File basedirectory = new File(resource.getDirectory()); // NOPMD</span>
-<span class="fc bfc" id="L142" title="All 2 branches covered.">			if (!basedirectory.isDirectory()) { // NOPMD</span>
-<span class="fc" id="L143">				getLog().warn(</span>
-						format(R.getString(&quot;missingdir&quot;),
-								resource.getDirectory()));
-<span class="fc" id="L146">				continue;</span>
-			}
-<span class="fc" id="L148">			final Scanner scanner = buildContext.newScanner(basedirectory);</span>
-<span class="fc" id="L149">			scanner.setIncludes(resource.getIncludes().toArray(new String[0])); // NOPMD</span>
-<span class="fc" id="L150">			scanner.setExcludes(resource.getExcludes().toArray(new String[0])); // NOPMD</span>
-<span class="fc" id="L151">			scanner.scan();</span>
-<span class="fc bfc" id="L152" title="All 2 branches covered.">			for (final String includedFile : scanner.getIncludedFiles()) {</span>
-<span class="fc bfc" id="L153" title="All 2 branches covered.">				if (resource.isFiltering()) {</span>
-					// TODO write out filtered file to batik folder and use the
-					// filtered file as input.
-<span class="fc" id="L156">					filteredSourceFiles.add(new File(basedirectory, // NOPMD</span>
-							includedFile).toString());
-				} else {
-<span class="fc" id="L159">					unfilteredSourceFiles.add(new File(basedirectory, // NOPMD</span>
-							includedFile).toString());
-				}
-			}
-<span class="fc" id="L163">		}</span>
-<span class="fc" id="L164">		converter.setDst(destDir);</span>
-<span class="fc" id="L165">		converter.setWidth(width);</span>
-<span class="fc" id="L166">		converter.setHeight(height);</span>
-<span class="fc" id="L167">		converter.setMaxWidth(maxWidth);</span>
-<span class="fc" id="L168">		converter.setMaxHeight(maxHeight);</span>
-		try {
-<span class="fc bfc" id="L170" title="All 2 branches covered.">			if (!filteredSourceFiles.isEmpty()) {</span>
-<span class="fc" id="L171">				converter</span>
-						.setSources(filteredSourceFiles.toArray(new String[0]));
-<span class="fc" id="L173">				converter.execute();</span>
-			}
-<span class="fc bfc" id="L175" title="All 2 branches covered.">			if (!unfilteredSourceFiles.isEmpty()) {</span>
-<span class="fc" id="L176">				converter.setSources(unfilteredSourceFiles</span>
-						.toArray(new String[0]));
-<span class="fc" id="L178">				converter.execute();</span>
-			}
-<span class="fc" id="L180">		} catch (final SVGConverterException e) {</span>
-<span class="fc" id="L181">			throw new MojoExecutionException(</span>
-					R.getString(&quot;errorduringconversion&quot;), e);
-<span class="fc" id="L183">		}</span>
-<span class="fc" id="L184">	}</span>
+<span class="fc" id="L131">        final List&lt;String&gt; unfilteredSourceFiles = new LinkedList&lt;String&gt;();</span>
+<span class="fc" id="L132">        final List&lt;String&gt; filteredSourceFiles = new LinkedList&lt;String&gt;();</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        if (svgResources == null) {</span>
+<span class="fc" id="L134">            final Resource defaultSvgResource = new Resource();</span>
+<span class="fc" id="L135">            defaultSvgResource.setDirectory(new File(project.getBasedir(),</span>
+                    &quot;src/main/svg&quot;).getPath());
+<span class="fc" id="L137">            defaultSvgResource.addInclude(&quot;**/*.svg&quot;);</span>
+<span class="fc" id="L138">            defaultSvgResource.setFiltering(false);</span>
+<span class="fc" id="L139">            svgResources = Collections.singletonList(defaultSvgResource);</span>
+        }
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        for (final Resource resource : svgResources) {</span>
+<span class="fc" id="L142">            final File basedirectory = new File(resource.getDirectory()); // NOPMD</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">            if (!basedirectory.isDirectory()) { // NOPMD</span>
+<span class="fc" id="L144">                getLog().warn(</span>
+                        format(R.getString(&quot;missingdir&quot;),
+                                resource.getDirectory()));
+<span class="fc" id="L147">                continue;</span>
+            }
+<span class="fc" id="L149">            final Scanner scanner = buildContext.newScanner(basedirectory);</span>
+<span class="fc" id="L150">            scanner.setIncludes(resource.getIncludes().toArray(new String[0])); // NOPMD</span>
+<span class="fc" id="L151">            scanner.setExcludes(resource.getExcludes().toArray(new String[0])); // NOPMD</span>
+<span class="fc" id="L152">            scanner.scan();</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">            for (final String includedFile : scanner.getIncludedFiles()) {</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">                if (resource.isFiltering()) {</span>
+                    // TODO write out filtered file to batik folder and use the
+                    // filtered file as input.
+<span class="fc" id="L157">                    filteredSourceFiles.add(new File(basedirectory, // NOPMD</span>
+                            includedFile).toString());
+                } else {
+<span class="fc" id="L160">                    unfilteredSourceFiles.add(new File(basedirectory, // NOPMD</span>
+                            includedFile).toString());
+                }
+            }
+<span class="fc" id="L164">        }</span>
+<span class="fc" id="L165">        converter.setDst(destDir);</span>
+<span class="fc" id="L166">        converter.setWidth(width);</span>
+<span class="fc" id="L167">        converter.setHeight(height);</span>
+<span class="fc" id="L168">        converter.setMaxWidth(maxWidth);</span>
+<span class="fc" id="L169">        converter.setMaxHeight(maxHeight);</span>
+        try {
+<span class="fc bfc" id="L171" title="All 2 branches covered.">            if (!filteredSourceFiles.isEmpty()) {</span>
+<span class="fc" id="L172">                converter</span>
+                        .setSources(filteredSourceFiles.toArray(new String[0]));
+<span class="fc" id="L174">                converter.execute();</span>
+            }
+<span class="fc bfc" id="L176" title="All 2 branches covered.">            if (!unfilteredSourceFiles.isEmpty()) {</span>
+<span class="fc" id="L177">                converter.setSources(unfilteredSourceFiles</span>
+                        .toArray(new String[0]));
+<span class="fc" id="L179">                converter.execute();</span>
+            }
+<span class="fc" id="L181">        } catch (final SVGConverterException e) {</span>
+<span class="fc" id="L182">            throw new MojoExecutionException(</span>
+                    R.getString(&quot;errorduringconversion&quot;), e);
+<span class="fc" id="L184">        }</span>
+<span class="fc" id="L185">    }</span>
 
-	/**
-	 * Maps a MIME type string to the {@link DestinationType}.
-	 *
-	 * @param mimeTypeString
-	 *            MIME type string
-	 * @return destination type
-	 * @throws MojoExecutionException
-	 */
-	private DestinationType mapMimeTypeToDestinationType(
-			final String mimeTypeString) throws MojoExecutionException {
-<span class="fc bfc" id="L196" title="All 2 branches covered.">		if (&quot;image/png&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
-<span class="fc" id="L197">			return DestinationType.PNG;</span>
-<span class="fc bfc" id="L198" title="All 2 branches covered.">		} else if (&quot;image/tiff&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
-<span class="fc" id="L199">			return DestinationType.TIFF;</span>
-<span class="fc bfc" id="L200" title="All 2 branches covered.">		} else if (&quot;image/jpeg&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
-<span class="fc" id="L201">			return DestinationType.JPEG;</span>
-<span class="fc bfc" id="L202" title="All 2 branches covered.">		} else if (&quot;application/pdf&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
-<span class="fc" id="L203">			return DestinationType.PDF;</span>
-		} else {
-<span class="fc" id="L205">			throw new MojoExecutionException(String.format(</span>
-					R.getString(&quot;unsupportedmimetype&quot;), mimeTypeString));
-		}
-	}
+    /**
+     * Maps a MIME type string to the {@link DestinationType}.
+     *
+     * @param mimeTypeString
+     *            MIME type string
+     * @return destination type
+     * @throws MojoExecutionException
+     */
+    private DestinationType mapMimeTypeToDestinationType(
+            final String mimeTypeString) throws MojoExecutionException {
+<span class="fc bfc" id="L197" title="All 2 branches covered.">        if (&quot;image/png&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
+<span class="fc" id="L198">            return DestinationType.PNG;</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">        } else if (&quot;image/tiff&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
+<span class="fc" id="L200">            return DestinationType.TIFF;</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">        } else if (&quot;image/jpeg&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
+<span class="fc" id="L202">            return DestinationType.JPEG;</span>
+<span class="fc bfc" id="L203" title="All 2 branches covered.">        } else if (&quot;application/pdf&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
+<span class="fc" id="L204">            return DestinationType.PDF;</span>
+        } else {
+<span class="fc" id="L206">            throw new MojoExecutionException(String.format(</span>
+                    R.getString(&quot;unsupportedmimetype&quot;), mimeTypeString));
+        }
+    }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
