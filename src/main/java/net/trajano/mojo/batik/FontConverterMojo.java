@@ -68,7 +68,7 @@ public class FontConverterMojo extends AbstractMojo {
     /**
      * The Maven Project.
      */
-    @Component
+    @Parameter(name = "${project}", readonly = true)
     private MavenProject project;
 
     /**
