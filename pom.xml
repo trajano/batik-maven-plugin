@@ -25,11 +25,16 @@
         </site>
     </distributionManagement>
     <properties>
-        <batik.version>1.7</batik.version>
+        <batik.version>1.8</batik.version>
         <jdk.version>1.6</jdk.version>
         <surefire.version>2.17</surefire.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
@@ -59,6 +64,16 @@
             <groupId>org.apache.xmlgraphics</groupId>
             <artifactId>batik-ttf2svg</artifactId>
             <version>${batik.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>fop</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>xmlgraphics-commons</artifactId>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
