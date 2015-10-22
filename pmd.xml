@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pmd version="5.0.5" timestamp="2015-10-22T15:52:59.845">
+<file name="/var/lib/jenkins/jobs/batik-maven-plugin/workspace/target/generated-sources/plugin/net/trajano/mojo/batik/HelpMojo.java">
+<violation beginline="71" endline="71" begincolumn="13" endcolumn="83" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="build" variable="dbFactory" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'dbFactory' could be declared final
+</violation>
+<violation beginline="72" endline="72" begincolumn="13" endcolumn="69" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="build" variable="dBuilder" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'dBuilder' could be declared final
+</violation>
+<violation beginline="120" endline="120" begincolumn="9" endcolumn="30" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="execute" variable="doc" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'doc' could be declared final
+</violation>
+<violation beginline="122" endline="122" begincolumn="9" endcolumn="46" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="execute" variable="sb" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'sb' could be declared final
+</violation>
+<violation beginline="123" endline="123" begincolumn="9" endcolumn="53" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="execute" variable="plugin" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'plugin' could be declared final
+</violation>
+<violation beginline="126" endline="126" begincolumn="9" endcolumn="48" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="execute" variable="name" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'name' could be declared final
+</violation>
+<violation beginline="127" endline="127" begincolumn="9" endcolumn="54" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="execute" variable="version" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'version' could be declared final
+</violation>
+<violation beginline="128" endline="128" begincolumn="9" endcolumn="106" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="execute" variable="id" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'id' could be declared final
+</violation>
+<violation beginline="148" endline="148" begincolumn="9" endcolumn="60" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="execute" variable="goalPrefix" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'goalPrefix' could be declared final
+</violation>
+<violation beginline="150" endline="150" begincolumn="9" endcolumn="55" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="execute" variable="mojos1" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'mojos1' could be declared final
+</violation>
+<violation beginline="152" endline="152" begincolumn="9" endcolumn="59" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="execute" variable="mojos" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'mojos' could be declared final
+</violation>
+<violation beginline="160" endline="160" begincolumn="15" endcolumn="23" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="execute" variable="mojo" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'mojo' could be declared final
+</violation>
+<violation beginline="172" endline="172" begincolumn="40" endcolumn="52" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="isNotEmpty" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'string' is not assigned and could be declared final
+</violation>
+<violation beginline="177" endline="177" begincolumn="41" endcolumn="58" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="getValue" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'elementName' is not assigned and could be declared final
+</violation>
+<violation beginline="177" endline="177" begincolumn="30" endcolumn="38" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="getValue" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'node' is not assigned and could be declared final
+</violation>
+<violation beginline="183" endline="183" begincolumn="45" endcolumn="62" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="getSingleChild" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'elementName' is not assigned and could be declared final
+</violation>
+<violation beginline="183" endline="183" begincolumn="34" endcolumn="42" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="getSingleChild" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'node' is not assigned and could be declared final
+</violation>
+<violation beginline="186" endline="186" begincolumn="9" endcolumn="67" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="getSingleChild" variable="namedChild" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'namedChild' could be declared final
+</violation>
+<violation beginline="198" endline="198" begincolumn="51" endcolumn="68" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="findNamedChild" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'elementName' is not assigned and could be declared final
+</violation>
+<violation beginline="198" endline="198" begincolumn="40" endcolumn="48" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="findNamedChild" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'node' is not assigned and could be declared final
+</violation>
+<violation beginline="200" endline="200" begincolumn="9" endcolumn="49" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="findNamedChild" variable="result" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'result' could be declared final
+</violation>
+<violation beginline="201" endline="201" begincolumn="9" endcolumn="50" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="findNamedChild" variable="childNodes" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'childNodes' could be declared final
+</violation>
+<violation beginline="204" endline="204" begincolumn="13" endcolumn="44" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="findNamedChild" variable="item" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'item' could be declared final
+</violation>
+<violation beginline="213" endline="213" begincolumn="46" endcolumn="63" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="findSingleChild" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'elementName' is not assigned and could be declared final
+</violation>
+<violation beginline="213" endline="213" begincolumn="35" endcolumn="43" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="findSingleChild" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'node' is not assigned and could be declared final
+</violation>
+<violation beginline="216" endline="216" begincolumn="9" endcolumn="74" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="findSingleChild" variable="elementsByTagName" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'elementsByTagName' could be declared final
+</violation>
+<violation beginline="228" endline="228" begincolumn="47" endcolumn="63" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeGoal" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'goalPrefix' is not assigned and could be declared final
+</violation>
+<violation beginline="228" endline="228" begincolumn="66" endcolumn="77" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeGoal" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'mojo' is not assigned and could be declared final
+</violation>
+<violation beginline="228" endline="228" begincolumn="29" endcolumn="44" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeGoal" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'sb' is not assigned and could be declared final
+</violation>
+<violation beginline="231" endline="231" begincolumn="9" endcolumn="50" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeGoal" variable="mojoGoal" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'mojoGoal' could be declared final
+</violation>
+<violation beginline="232" endline="232" begincolumn="9" endcolumn="76" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeGoal" variable="configurationElement" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'configurationElement' could be declared final
+</violation>
+<violation beginline="233" endline="233" begincolumn="17" endcolumn="73" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeGoal" variable="description" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'description' could be declared final
+</violation>
+<violation beginline="237" endline="237" begincolumn="13" endcolumn="67" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeGoal" variable="deprecated" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'deprecated' could be declared final
+</violation>
+<violation beginline="255" endline="255" begincolumn="17" endcolumn="74" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeGoal" variable="parametersNode" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'parametersNode' could be declared final
+</violation>
+<violation beginline="256" endline="256" begincolumn="17" endcolumn="85" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeGoal" variable="parameters" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'parameters' could be declared final
+</violation>
+<violation beginline="260" endline="260" begincolumn="23" endcolumn="36" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeGoal" variable="parameter" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'parameter' could be declared final
+</violation>
+<violation beginline="268" endline="268" begincolumn="68" endcolumn="92" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeParameter" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'configurationElement' is not assigned and could be declared final
+</violation>
+<violation beginline="268" endline="268" begincolumn="52" endcolumn="65" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeParameter" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'parameter' is not assigned and could be declared final
+</violation>
+<violation beginline="268" endline="268" begincolumn="34" endcolumn="49" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeParameter" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'sb' is not assigned and could be declared final
+</violation>
+<violation beginline="271" endline="271" begincolumn="9" endcolumn="60" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeParameter" variable="parameterName" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'parameterName' could be declared final
+</violation>
+<violation beginline="272" endline="272" begincolumn="9" endcolumn="74" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeParameter" variable="parameterDescription" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'parameterDescription' could be declared final
+</violation>
+<violation beginline="274" endline="274" begincolumn="9" endcolumn="107" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeParameter" variable="fieldConfigurationElement" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'fieldConfigurationElement' could be declared final
+</violation>
+<violation beginline="282" endline="282" begincolumn="9" endcolumn="68" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeParameter" variable="deprecated" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'deprecated' could be declared final
+</violation>
+<violation beginline="295" endline="295" begincolumn="17" endcolumn="105" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="writeParameter" variable="property" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'property' could be declared final
+</violation>
+<violation beginline="311" endline="311" begincolumn="47" endcolumn="56" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="repeat" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'repeat' is not assigned and could be declared final
+</violation>
+<violation beginline="311" endline="311" begincolumn="35" endcolumn="44" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="repeat" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'str' is not assigned and could be declared final
+</violation>
+<violation beginline="313" endline="313" begincolumn="9" endcolumn="73" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="repeat" variable="buffer" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'buffer' could be declared final
+</violation>
+<violation beginline="331" endline="331" begincolumn="44" endcolumn="61" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="append" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'description' is not assigned and could be declared final
+</violation>
+<violation beginline="331" endline="331" begincolumn="64" endcolumn="73" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="append" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'indent' is not assigned and could be declared final
+</violation>
+<violation beginline="331" endline="331" begincolumn="26" endcolumn="41" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="append" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'sb' is not assigned and could be declared final
+</violation>
+<violation beginline="333" endline="333" begincolumn="15" endcolumn="25" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="append" variable="line" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'line' could be declared final
+</violation>
+<violation beginline="349" endline="349" begincolumn="55" endcolumn="64" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'indent' is not assigned and could be declared final
+</violation>
+<violation beginline="349" endline="349" begincolumn="67" endcolumn="80" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'indentSize' is not assigned and could be declared final
+</violation>
+<violation beginline="349" endline="349" begincolumn="83" endcolumn="96" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'lineLength' is not assigned and could be declared final
+</violation>
+<violation beginline="349" endline="349" begincolumn="42" endcolumn="52" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'text' is not assigned and could be declared final
+</violation>
+<violation beginline="351" endline="351" begincolumn="9" endcolumn="52" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" variable="lines" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'lines' could be declared final
+</violation>
+<violation beginline="353" endline="353" begincolumn="9" endcolumn="43" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" variable="ind" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'ind' could be declared final
+</violation>
+<violation beginline="355" endline="355" begincolumn="9" endcolumn="62" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" variable="plainLines" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'plainLines' could be declared final
+</violation>
+<violation beginline="357" endline="357" begincolumn="15" endcolumn="30" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" variable="plainLine" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'plainLine' could be declared final
+</violation>
+<violation beginline="373" endline="373" begincolumn="67" endcolumn="80" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'indentSize' is not assigned and could be declared final
+</violation>
+<violation beginline="373" endline="373" begincolumn="54" endcolumn="64" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'line' is not assigned and could be declared final
+</violation>
+<violation beginline="373" endline="373" begincolumn="83" endcolumn="96" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'lineLength' is not assigned and could be declared final
+</violation>
+<violation beginline="373" endline="373" begincolumn="34" endcolumn="51" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'lines' is not assigned and could be declared final
+</violation>
+<violation beginline="375" endline="375" begincolumn="9" endcolumn="47" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" variable="lineIndent" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'lineIndent' could be declared final
+</violation>
+<violation beginline="376" endline="376" begincolumn="9" endcolumn="52" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" variable="buf" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'buf' could be declared final
+</violation>
+<violation beginline="378" endline="378" begincolumn="9" endcolumn="44" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" variable="tokens" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'tokens' could be declared final
+</violation>
+<violation beginline="380" endline="380" begincolumn="15" endcolumn="26" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" variable="token" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'token' could be declared final
+</violation>
+<violation beginline="398" endline="398" begincolumn="17" endcolumn="42" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="toLines" variable="c" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'c' could be declared final
+</violation>
+<violation beginline="422" endline="422" begincolumn="40" endcolumn="50" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="getIndentLevel" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'line' is not assigned and could be declared final
+</violation>
+<violation beginline="440" endline="440" begincolumn="47" endcolumn="63" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="getPropertyFromExpression" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'expression' is not assigned and could be declared final
+</violation>
+</file>
+</pmd>

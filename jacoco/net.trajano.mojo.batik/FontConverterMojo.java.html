@@ -32,7 +32,7 @@ import org.sonatype.plexus.build.incremental.BuildContext;
      * Resource bundle.
      */
 <span class="fc" id="L34">    private static final ResourceBundle R = ResourceBundle</span>
-            .getBundle(&quot;META-INF/Messages&quot;);
+<span class="fc" id="L35">            .getBundle(&quot;META-INF/Messages&quot;);</span>
     /**
      * Build context.
      */
@@ -50,16 +50,16 @@ import org.sonatype.plexus.build.incremental.BuildContext;
      * The default is:
      *
      * &lt;pre&gt;
-     * &amp;lt;fontFileSets&gt;
-     *     &amp;lt;fileSet&gt;
-     *         &amp;lt;directory&gt;${basedir}/src/main/ttf&amp;lt;/directory&gt;
-     *         &amp;lt;includes&gt;
-     *             &amp;lt;include&gt;**\/\*.ttf&amp;lt;/include&gt;
-     *         &amp;lt;/includes&gt;
-     *         &amp;lt;excludes&gt;
-     *         &amp;lt;/excludes&gt;
-     *     &amp;lt;/fileSet&gt;
-     * &amp;lt;/fontFileSets&gt;
+     * &amp;lt;fontFileSets&amp;gt;
+     *     &amp;lt;fileSet&amp;gt;
+     *         &amp;lt;directory&amp;gt;${basedir}/src/main/ttf&amp;lt;/directory&amp;gt;
+     *         &amp;lt;includes&amp;gt;
+     *             &amp;lt;include&amp;gt;**\/\*.ttf&amp;lt;/include&amp;gt;
+     *         &amp;lt;/includes&amp;gt;
+     *         &amp;lt;excludes&amp;gt;
+     *         &amp;lt;/excludes&amp;gt;
+     *     &amp;lt;/fileSet&amp;gt;
+     * &amp;lt;/fontFileSets&amp;gt;
      * &lt;/pre&gt;
      */
     @Parameter(required = false)
@@ -68,7 +68,7 @@ import org.sonatype.plexus.build.incremental.BuildContext;
     /**
      * The Maven Project.
      */
-    @Parameter(name = &quot;${project}&quot;, readonly = true)
+    @Parameter(defaultValue = &quot;${project}&quot;, readonly = true)
     private MavenProject project;
 
     /**
@@ -84,7 +84,7 @@ import org.sonatype.plexus.build.incremental.BuildContext;
 <span class="fc bfc" id="L84" title="All 2 branches covered.">        if (fontFileSets == null) {</span>
 <span class="fc" id="L85">            final FileSet defaultFontFileSet = new FileSet();</span>
 <span class="fc" id="L86">            defaultFontFileSet.setDirectory(new File(project.getBasedir(),</span>
-                    &quot;src/main/ttf&quot;).getPath());
+<span class="fc" id="L87">                    &quot;src/main/ttf&quot;).getPath());</span>
 <span class="fc" id="L88">            defaultFontFileSet.addInclude(&quot;**/*.ttf&quot;);</span>
 <span class="fc" id="L89">            fontFileSets = Collections.singletonList(defaultFontFileSet);</span>
         }
@@ -104,17 +104,17 @@ import org.sonatype.plexus.build.incremental.BuildContext;
 <span class="fc" id="L104">                final File inputFile = new File(baseDirectory, // NOPMD</span>
                         includedFile);
 <span class="fc" id="L106">                final String basename = includedFile.substring(0,</span>
-                        includedFile.lastIndexOf('.'));
+<span class="fc" id="L107">                        includedFile.lastIndexOf('.'));</span>
 <span class="fc" id="L108">                final File svgFile = new File(destDir, basename + &quot;.svg&quot;); // NOPMD</span>
                 try {
 <span class="fc" id="L110">                    final PrintStream ps = new PrintStream(// NOPMD</span>
-                            buildContext.newFileOutputStream(svgFile));
+<span class="fc" id="L111">                            buildContext.newFileOutputStream(svgFile));</span>
 <span class="fc" id="L112">                    SvgFontUtil.writeFontAsSvg(ps,</span>
-                            Font.create(inputFile.toString()), basename);
+<span class="fc" id="L113">                            Font.create(inputFile.toString()), basename);</span>
 <span class="fc" id="L114">                    ps.close();</span>
 <span class="fc" id="L115">                } catch (final Exception e) {</span>
 <span class="fc" id="L116">                    throw new MojoExecutionException(String.format(</span>
-                            R.getString(&quot;failedtorender&quot;), inputFile), e);
+<span class="fc" id="L117">                            R.getString(&quot;failedtorender&quot;), inputFile), e);</span>
 <span class="fc" id="L118">                }</span>
             }
 <span class="fc" id="L120">        }</span>

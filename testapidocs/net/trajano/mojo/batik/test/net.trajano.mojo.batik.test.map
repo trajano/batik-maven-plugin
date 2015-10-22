@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./RasterizerMojoTest.html" title="net.trajano.mojo.batik.test.RasterizerMojoTest" alt="" coords="16,17,148,42"/>
-<area shape="rect" id="node1" href="./RasterizerMojoTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,159,53"/>
-<area shape="rect" id="node2_1" href="./FontConverterMojoTest.html" title="net.trajano.mojo.batik.test.FontConverterMojoTest" alt="" coords="194,17,346,42"/>
-<area shape="rect" id="node2" href="./FontConverterMojoTest.html" title="&lt;TABLE&gt;" alt="" coords="183,5,357,53"/>
+<area shape="rect" id="node1_0" href="./FontConverterMojoTest.html" title="net.trajano.mojo.batik.test.FontConverterMojoTest" alt="" coords="16,17,172,42"/>
+<area shape="rect" id="node1" href="./FontConverterMojoTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,183,53"/>
+<area shape="rect" id="node2_1" href="./RasterizerMojoTest.html" title="net.trajano.mojo.batik.test.RasterizerMojoTest" alt="" coords="218,17,351,42"/>
+<area shape="rect" id="node2" href="./RasterizerMojoTest.html" title="&lt;TABLE&gt;" alt="" coords="207,5,362,53"/>
 </map>

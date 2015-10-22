@@ -1,5 +1,5 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Batik Maven Plugin,net.trajano.mojo.batik,RasterizerMojo,0,250,0,22,0,50,0,15,0,4
-Batik Maven Plugin,net.trajano.mojo.batik,FontConverterMojo,0,173,0,8,0,30,0,7,0,3
+Batik Maven Plugin,net.trajano.mojo.batik,RasterizerMojo,0,250,0,22,0,61,0,15,0,4
+Batik Maven Plugin,net.trajano.mojo.batik,FontConverterMojo,0,173,0,8,0,36,0,7,0,3
+Batik Maven Plugin,net.trajano.mojo.batik.internal,LoggingSvgConverterController,0,86,0,2,0,16,0,6,0,5
 Batik Maven Plugin,net.trajano.mojo.batik.internal,SvgFontUtil,0,29,0,0,0,10,0,3,0,3
-Batik Maven Plugin,net.trajano.mojo.batik.internal,LoggingSvgConverterController,0,86,0,2,0,12,0,6,0,5

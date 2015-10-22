@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./RasterizerMojo.html" title="net.trajano.mojo.batik.RasterizerMojo" alt="" coords="16,17,123,42"/>
-<area shape="rect" id="node1" href="./RasterizerMojo.html" title="&lt;TABLE&gt;" alt="" coords="5,5,133,53"/>
-<area shape="rect" id="node2_1" href="./HelpMojo.html" title="net.trajano.mojo.batik.HelpMojo" alt="" coords="169,17,242,42"/>
-<area shape="rect" id="node2" href="./HelpMojo.html" title="&lt;TABLE&gt;" alt="" coords="158,5,253,53"/>
-<area shape="rect" id="node3_2" href="./FontConverterMojo.html" title="net.trajano.mojo.batik.FontConverterMojo" alt="" coords="288,17,416,42"/>
-<area shape="rect" id="node3" href="./FontConverterMojo.html" title="&lt;TABLE&gt;" alt="" coords="277,5,427,53"/>
+<area shape="rect" id="node1_0" href="./HelpMojo.html" title="net.trajano.mojo.batik.HelpMojo" alt="" coords="16,17,91,42"/>
+<area shape="rect" id="node1" href="./HelpMojo.html" title="&lt;TABLE&gt;" alt="" coords="5,5,101,53"/>
+<area shape="rect" id="node2_1" href="./FontConverterMojo.html" title="net.trajano.mojo.batik.FontConverterMojo" alt="" coords="136,17,267,42"/>
+<area shape="rect" id="node2" href="./FontConverterMojo.html" title="&lt;TABLE&gt;" alt="" coords="125,5,277,53"/>
+<area shape="rect" id="node3_2" href="./RasterizerMojo.html" title="net.trajano.mojo.batik.RasterizerMojo" alt="" coords="313,17,421,42"/>
+<area shape="rect" id="node3" href="./RasterizerMojo.html" title="&lt;TABLE&gt;" alt="" coords="302,5,431,53"/>
 </map>

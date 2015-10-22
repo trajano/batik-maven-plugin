@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./LoggingSvgConverterController.html" title="net.trajano.mojo.batik.internal.LoggingSvgConverterController" alt="" coords="16,118,211,143"/>
-<area shape="rect" id="node1" href="./LoggingSvgConverterController.html" title="&lt;TABLE&gt;" alt="" coords="5,107,221,155"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/batik/apps/rasterizer/SVGConverterController.html" title="org.apache.batik.apps.rasterizer.SVGConverterController" alt="" coords="35,11,191,53"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/batik/apps/rasterizer/SVGConverterController.html" title="&lt;TABLE&gt;" alt="" coords="25,5,202,59"/>
+<area shape="rect" id="node1_0" href="./LoggingSvgConverterController.html" title="net.trajano.mojo.batik.internal.LoggingSvgConverterController" alt="" coords="16,118,216,143"/>
+<area shape="rect" id="node1" href="./LoggingSvgConverterController.html" title="&lt;TABLE&gt;" alt="" coords="5,107,227,155"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/batik/apps/rasterizer/SVGConverterController.html" title="org.apache.batik.apps.rasterizer.SVGConverterController" alt="" coords="36,11,196,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/batik/apps/rasterizer/SVGConverterController.html" title="&lt;TABLE&gt;" alt="" coords="25,5,207,59"/>
 </map>
