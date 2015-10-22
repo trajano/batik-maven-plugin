@@ -50,16 +50,16 @@ public class FontConverterMojo extends AbstractMojo {
      * The default is:
      *
      * <pre>
-     * &lt;fontFileSets>
-     *     &lt;fileSet>
-     *         &lt;directory>${basedir}/src/main/ttf&lt;/directory>
-     *         &lt;includes>
-     *             &lt;include>**\/\*.ttf&lt;/include>
-     *         &lt;/includes>
-     *         &lt;excludes>
-     *         &lt;/excludes>
-     *     &lt;/fileSet>
-     * &lt;/fontFileSets>
+     * &lt;fontFileSets&gt;
+     *     &lt;fileSet&gt;
+     *         &lt;directory&gt;${basedir}/src/main/ttf&lt;/directory&gt;
+     *         &lt;includes&gt;
+     *             &lt;include&gt;**\/\*.ttf&lt;/include&gt;
+     *         &lt;/includes&gt;
+     *         &lt;excludes&gt;
+     *         &lt;/excludes&gt;
+     *     &lt;/fileSet&gt;
+     * &lt;/fontFileSets&gt;
      * </pre>
      */
     @Parameter(required = false)

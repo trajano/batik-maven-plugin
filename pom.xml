@@ -4,7 +4,7 @@
     <parent>
         <groupId>net.trajano</groupId>
         <artifactId>trajano</artifactId>
-        <version>10</version>
+        <version>12</version>
     </parent>
     <groupId>net.trajano.mojo</groupId>
     <artifactId>batik-maven-plugin</artifactId>
@@ -25,6 +25,7 @@
         </site>
     </distributionManagement>
     <properties>
+        <batik.version>1.7</batik.version>
         <jdk.version>1.6</jdk.version>
         <surefire.version>2.17</surefire.version>
     </properties>
@@ -32,27 +33,32 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
-            <version>3.2.2</version>
+            <version>3.3.3</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>3.2.2</version>
+            <version>3.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-bridge</artifactId>
+            <version>${batik.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.xmlgraphics</groupId>
             <artifactId>batik-codec</artifactId>
-            <version>1.7</version>
+            <version>${batik.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.xmlgraphics</groupId>
             <artifactId>batik-rasterizer</artifactId>
-            <version>1.7</version>
+            <version>${batik.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.xmlgraphics</groupId>
             <artifactId>batik-ttf2svg</artifactId>
-            <version>1.7</version>
+            <version>${batik.version}</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
@@ -65,12 +71,6 @@
             <version>0.0.7</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.maven.plugin-tools</groupId>
-            <artifactId>maven-plugin-annotations</artifactId>
-            <version>3.3</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>net.trajano.commons</groupId>
             <artifactId>commons-testing</artifactId>
             <version>1.0.1</version>
@@ -79,7 +79,7 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-compat</artifactId>
-            <version>3.2.2</version>
+            <version>3.3.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -87,6 +87,12 @@
             <artifactId>maven-plugin-testing-harness</artifactId>
             <version>3.1.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.4</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>

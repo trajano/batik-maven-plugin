@@ -93,17 +93,17 @@ public class RasterizerMojo extends AbstractMojo {
      * FileSet to allow for filtering in the future. The default is:
      *
      * <pre>
-     * &lt;svgResources>
-     *     &lt;resource>
-     *         &lt;directory>${basedir}/src/main/svg&lt;/directory>
-     *         &lt;filtering>false&lt;/filtering>
-     *         &lt;includes>
-     *             &lt;include>**\/\*.svg&lt;/include>
-     *         &lt;/includes>
-     *         &lt;excludes>
-     *         &lt;/excludes>
-     *     &lt;/resources>
-     * &lt;/svgResources>
+     * &lt;svgResources&gt;
+     *     &lt;resource&gt;
+     *         &lt;directory&gt;${basedir}/src/main/svg&lt;/directory&gt;
+     *         &lt;filtering&gt;false&lt;/filtering&gt;
+     *         &lt;includes&gt;
+     *             &lt;include&gt;**\/\*.svg&lt;/include&gt;
+     *         &lt;/includes&gt;
+     *         &lt;excludes&gt;
+     *         &lt;/excludes&gt;
+     *     &lt;/resources&gt;
+     * &lt;/svgResources&gt;
      * </pre>
      */
     @Parameter(required = false)
