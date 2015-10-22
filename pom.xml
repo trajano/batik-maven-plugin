@@ -8,7 +8,7 @@
     </parent>
     <groupId>net.trajano.mojo</groupId>
     <artifactId>batik-maven-plugin</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     <name>Batik Maven Plugin</name>
     <description>Provides functionality to execute the Batik Rasterizer and Font converter.</description>
