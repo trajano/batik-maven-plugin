@@ -85,7 +85,7 @@ public class RasterizerMojo extends AbstractMojo {
     /**
      * The Maven Project.
      */
-    @Parameter(name = "${project}", readonly = true)
+    @Parameter(defaultValue = "${project}", readonly = true)
     private MavenProject project;
 
     /**
