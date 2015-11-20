@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pmd version="5.0.5" timestamp="2015-10-22T15:52:59.845">
+<pmd version="5.0.5" timestamp="2015-11-20T03:23:12.050">
 <file name="/var/lib/jenkins/jobs/batik-maven-plugin/workspace/target/generated-sources/plugin/net/trajano/mojo/batik/HelpMojo.java">
 <violation beginline="71" endline="71" begincolumn="13" endcolumn="83" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="net.trajano.mojo.batik" class="HelpMojo" method="build" variable="dbFactory" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
 Local variable 'dbFactory' could be declared final
