@@ -5,15 +5,15 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
-import net.trajano.commons.testing.UtilityClassTestUtil;
-import net.trajano.mojo.batik.FontConverterMojo;
-import net.trajano.mojo.batik.RasterizerMojo;
-import net.trajano.mojo.batik.internal.SvgFontUtil;
-
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.MojoRule;
 import org.junit.Rule;
 import org.junit.Test;
+
+import net.trajano.commons.testing.UtilityClassTestUtil;
+import net.trajano.mojo.batik.FontConverterMojo;
+import net.trajano.mojo.batik.RasterizerMojo;
+import net.trajano.mojo.batik.internal.SvgFontUtil;
 
 /**
  * Tests the {@link RasterizerMojo}.
@@ -24,17 +24,15 @@ public class FontConverterMojoTest {
 
     /**
      * Tests with just the dest directory set.
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testDefault() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/default-pom.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/default-pom.xml");
         assertTrue(testPom.exists());
 
-        final FontConverterMojo mojo = (FontConverterMojo) rule.lookupMojo(
-                "ttf2svg", testPom);
+        final FontConverterMojo mojo = (FontConverterMojo) rule.lookupMojo("ttf2svg", testPom);
         assertNotNull(mojo);
         mojo.execute();
     }
@@ -44,12 +42,10 @@ public class FontConverterMojoTest {
      */
     @Test(expected = MojoExecutionException.class)
     public void testInvalidFont() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/invalid-font-converter-pom.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/invalid-font-converter-pom.xml");
         assertTrue(testPom.exists());
 
-        final FontConverterMojo mojo = (FontConverterMojo) rule.lookupMojo(
-                "ttf2svg", testPom);
+        final FontConverterMojo mojo = (FontConverterMojo) rule.lookupMojo("ttf2svg", testPom);
         assertNotNull(mojo);
         mojo.execute();
     }
@@ -59,12 +55,10 @@ public class FontConverterMojoTest {
      */
     @Test
     public void testMojoGoal() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/font-converter-pom.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/font-converter-pom.xml");
         assertTrue(testPom.exists());
 
-        final FontConverterMojo mojo = (FontConverterMojo) rule.lookupMojo(
-                "ttf2svg", testPom);
+        final FontConverterMojo mojo = (FontConverterMojo) rule.lookupMojo("ttf2svg", testPom);
         assertNotNull(mojo);
         mojo.execute();
     }

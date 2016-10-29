@@ -8,8 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import net.trajano.mojo.batik.internal.LoggingSvgConverterController;
-
 import org.apache.batik.apps.rasterizer.DestinationType;
 import org.apache.batik.apps.rasterizer.SVGConverter;
 import org.apache.batik.apps.rasterizer.SVGConverterException;
@@ -24,6 +22,8 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.Scanner;
 import org.sonatype.plexus.build.incremental.BuildContext;
 
+import net.trajano.mojo.batik.internal.LoggingSvgConverterController;
+
 /**
  * Executes the Batik rasterizer.
  */
@@ -33,8 +33,7 @@ public class RasterizerMojo extends AbstractMojo {
     /**
      * Resource bundle.
      */
-    private static final ResourceBundle R = ResourceBundle
-            .getBundle("META-INF/Messages");
+    private static final ResourceBundle R = ResourceBundle.getBundle("META-INF/Messages");
 
     /**
      * Build context.
@@ -124,16 +123,14 @@ public class RasterizerMojo extends AbstractMojo {
      */
     @Override
     public void execute() throws MojoExecutionException {
-        final SVGConverter converter = new SVGConverter(
-                new LoggingSvgConverterController(getLog(), failOnError));
+        final SVGConverter converter = new SVGConverter(new LoggingSvgConverterController(getLog(), failOnError));
         converter.setDestinationType(mapMimeTypeToDestinationType(mimeType));
 
         final List<String> unfilteredSourceFiles = new LinkedList<String>();
         final List<String> filteredSourceFiles = new LinkedList<String>();
         if (svgResources == null) {
             final Resource defaultSvgResource = new Resource();
-            defaultSvgResource.setDirectory(new File(project.getBasedir(),
-                    "src/main/svg").getPath());
+            defaultSvgResource.setDirectory(new File(project.getBasedir(), "src/main/svg").getPath());
             defaultSvgResource.addInclude("**/*.svg");
             defaultSvgResource.setFiltering(false);
             svgResources = Collections.singletonList(defaultSvgResource);
@@ -141,9 +138,7 @@ public class RasterizerMojo extends AbstractMojo {
         for (final Resource resource : svgResources) {
             final File basedirectory = new File(resource.getDirectory()); // NOPMD
             if (!basedirectory.isDirectory()) { // NOPMD
-                getLog().warn(
-                        format(R.getString("missingdir"),
-                                resource.getDirectory()));
+                getLog().warn(format(R.getString("missingdir"), resource.getDirectory()));
                 continue;
             }
             final Scanner scanner = buildContext.newScanner(basedirectory);
@@ -169,18 +164,15 @@ public class RasterizerMojo extends AbstractMojo {
         converter.setMaxHeight(maxHeight);
         try {
             if (!filteredSourceFiles.isEmpty()) {
-                converter
-                        .setSources(filteredSourceFiles.toArray(new String[0]));
+                converter.setSources(filteredSourceFiles.toArray(new String[0]));
                 converter.execute();
             }
             if (!unfilteredSourceFiles.isEmpty()) {
-                converter.setSources(unfilteredSourceFiles
-                        .toArray(new String[0]));
+                converter.setSources(unfilteredSourceFiles.toArray(new String[0]));
                 converter.execute();
             }
         } catch (final SVGConverterException e) {
-            throw new MojoExecutionException(
-                    R.getString("errorduringconversion"), e);
+            throw new MojoExecutionException(R.getString("errorduringconversion"), e);
         }
     }
 
@@ -192,8 +184,7 @@ public class RasterizerMojo extends AbstractMojo {
      * @return destination type
      * @throws MojoExecutionException
      */
-    private DestinationType mapMimeTypeToDestinationType(
-            final String mimeTypeString) throws MojoExecutionException {
+    private DestinationType mapMimeTypeToDestinationType(final String mimeTypeString) throws MojoExecutionException {
         if ("image/png".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.PNG;
         } else if ("image/tiff".equalsIgnoreCase(mimeTypeString)) {
@@ -203,8 +194,7 @@ public class RasterizerMojo extends AbstractMojo {
         } else if ("application/pdf".equalsIgnoreCase(mimeTypeString)) {
             return DestinationType.PDF;
         } else {
-            throw new MojoExecutionException(String.format(
-                    R.getString("unsupportedmimetype"), mimeTypeString));
+            throw new MojoExecutionException(String.format(R.getString("unsupportedmimetype"), mimeTypeString));
         }
     }
 }

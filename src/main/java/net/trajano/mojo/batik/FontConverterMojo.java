@@ -8,8 +8,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import net.trajano.mojo.batik.internal.SvgFontUtil;
-
 import org.apache.batik.svggen.font.Font;
 import org.apache.maven.model.FileSet;
 import org.apache.maven.plugin.AbstractMojo;
@@ -22,6 +20,8 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.Scanner;
 import org.sonatype.plexus.build.incremental.BuildContext;
 
+import net.trajano.mojo.batik.internal.SvgFontUtil;
+
 /**
  * Executes the Batik Font converter.
  */
@@ -31,8 +31,7 @@ public class FontConverterMojo extends AbstractMojo {
     /**
      * Resource bundle.
      */
-    private static final ResourceBundle R = ResourceBundle
-            .getBundle("META-INF/Messages");
+    private static final ResourceBundle R = ResourceBundle.getBundle("META-INF/Messages");
     /**
      * Build context.
      */
@@ -83,8 +82,7 @@ public class FontConverterMojo extends AbstractMojo {
         destDir.mkdirs();
         if (fontFileSets == null) {
             final FileSet defaultFontFileSet = new FileSet();
-            defaultFontFileSet.setDirectory(new File(project.getBasedir(),
-                    "src/main/ttf").getPath());
+            defaultFontFileSet.setDirectory(new File(project.getBasedir(), "src/main/ttf").getPath());
             defaultFontFileSet.addInclude("**/*.ttf");
             fontFileSets = Collections.singletonList(defaultFontFileSet);
         }
@@ -103,18 +101,15 @@ public class FontConverterMojo extends AbstractMojo {
 
                 final File inputFile = new File(baseDirectory, // NOPMD
                         includedFile);
-                final String basename = includedFile.substring(0,
-                        includedFile.lastIndexOf('.'));
+                final String basename = includedFile.substring(0, includedFile.lastIndexOf('.'));
                 final File svgFile = new File(destDir, basename + ".svg"); // NOPMD
                 try {
                     final PrintStream ps = new PrintStream(// NOPMD
                             buildContext.newFileOutputStream(svgFile));
-                    SvgFontUtil.writeFontAsSvg(ps,
-                            Font.create(inputFile.toString()), basename);
+                    SvgFontUtil.writeFontAsSvg(ps, Font.create(inputFile.toString()), basename);
                     ps.close();
                 } catch (final Exception e) {
-                    throw new MojoExecutionException(String.format(
-                            R.getString("failedtorender"), inputFile), e);
+                    throw new MojoExecutionException(String.format(R.getString("failedtorender"), inputFile), e);
                 }
             }
         }

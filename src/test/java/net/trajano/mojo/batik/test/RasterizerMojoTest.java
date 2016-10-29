@@ -9,12 +9,12 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
-import net.trajano.mojo.batik.RasterizerMojo;
-
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.MojoRule;
 import org.junit.Rule;
 import org.junit.Test;
+
+import net.trajano.mojo.batik.RasterizerMojo;
 
 /**
  * Tests the {@link RasterizerMojo}.
@@ -25,51 +25,45 @@ public class RasterizerMojoTest {
 
     /**
      * Tests with a bad MIME type.
-     * 
+     *
      * @throws Exception
      */
     @Test(expected = MojoExecutionException.class)
     public void testBadMime() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/badmime-pom.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/badmime-pom.xml");
         assertTrue(testPom.exists());
 
-        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
-                "rasterizer", testPom);
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo("rasterizer", testPom);
         assertNotNull(mojo);
         mojo.execute();
     }
 
     /**
      * Tests with a no SVG resources.
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testDefaultSvgResources() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/default-svgresources-pom.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/default-svgresources-pom.xml");
         assertTrue(testPom.exists());
 
-        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
-                "rasterizer", testPom);
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo("rasterizer", testPom);
         assertNotNull(mojo);
         mojo.execute();
     }
 
     /**
      * Tests with a empty filtered SVG resources.
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testEmptySvgResources() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/empty-svgresources-pom.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/empty-svgresources-pom.xml");
         assertTrue(testPom.exists());
 
-        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
-                "rasterizer", testPom);
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo("rasterizer", testPom);
         assertNotNull(mojo);
         mojo.execute();
     }
@@ -79,17 +73,14 @@ public class RasterizerMojoTest {
      */
     @Test
     public void testExplicitMimeFilteredPng() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/rasterizer-pom-filtered-png.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/rasterizer-pom-filtered-png.xml");
         assertTrue(testPom.exists());
 
-        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
-                "rasterizer", testPom);
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo("rasterizer", testPom);
         assertNotNull(mojo);
         mojo.execute();
 
-        final BufferedImage image = ImageIO.read(new File(
-                "target/generated-resources/batik/logo.png"));
+        final BufferedImage image = ImageIO.read(new File("target/generated-resources/batik/logo.png"));
         assertEquals(500, image.getWidth());
         assertEquals(500, image.getHeight());
     }
@@ -99,12 +90,10 @@ public class RasterizerMojoTest {
      */
     @Test
     public void testExplicitMimePdf() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/rasterizer-pom-pdf.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/rasterizer-pom-pdf.xml");
         assertTrue(testPom.exists());
 
-        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
-                "rasterizer", testPom);
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo("rasterizer", testPom);
         assertNotNull(mojo);
         mojo.execute();
     }
@@ -114,17 +103,14 @@ public class RasterizerMojoTest {
      */
     @Test
     public void testExplicitMimePng() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/rasterizer-pom-png.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/rasterizer-pom-png.xml");
         assertTrue(testPom.exists());
 
-        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
-                "rasterizer", testPom);
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo("rasterizer", testPom);
         assertNotNull(mojo);
         mojo.execute();
 
-        final BufferedImage image = ImageIO.read(new File(
-                "target/generated-resources/batik/logo.png"));
+        final BufferedImage image = ImageIO.read(new File("target/generated-resources/batik/logo.png"));
         assertEquals(100, image.getWidth());
         assertEquals(100, image.getHeight());
     }
@@ -134,12 +120,10 @@ public class RasterizerMojoTest {
      */
     @Test
     public void testExplicitMimeTiff() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/rasterizer-pom-tiff.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/rasterizer-pom-tiff.xml");
         assertTrue(testPom.exists());
 
-        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
-                "rasterizer", testPom);
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo("rasterizer", testPom);
         assertNotNull(mojo);
         mojo.execute();
 
@@ -149,34 +133,30 @@ public class RasterizerMojoTest {
 
     /**
      * Tests with a invalid SVG resources.
-     * 
+     *
      * @throws Exception
      */
     @Test(expected = MojoExecutionException.class)
     public void testNonSvgResources() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/non-svgresources-pom.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/non-svgresources-pom.xml");
         assertTrue(testPom.exists());
 
-        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
-                "rasterizer", testPom);
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo("rasterizer", testPom);
         assertNotNull(mojo);
         mojo.execute();
     }
 
     /**
      * Tests with a invalid SVG resources without failure.
-     * 
+     *
      * @throws Exception
      */
     @Test
     public void testNonSvgResourcesNoFail() throws Exception {
-        final File testPom = new File(
-                "src/test/resources/net/trajano/batik/ignore-error-svgresources-pom.xml");
+        final File testPom = new File("src/test/resources/net/trajano/batik/ignore-error-svgresources-pom.xml");
         assertTrue(testPom.exists());
 
-        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo(
-                "rasterizer", testPom);
+        final RasterizerMojo mojo = (RasterizerMojo) rule.lookupMojo("rasterizer", testPom);
         assertNotNull(mojo);
         mojo.execute();
     }

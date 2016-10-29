@@ -27,8 +27,7 @@ public final class SvgFontUtil extends SVGFont {
      * @throws Exception
      */
     @SuppressWarnings("all")
-    public static void writeFontAsSvg(final PrintStream ps, final Font font,
-            final String id) throws Exception {
+    public static void writeFontAsSvg(final PrintStream ps, final Font font, final String id) throws Exception {
         writeFontAsSvg(ps, font, id, -1, -1, true, false);
     }
 
@@ -54,9 +53,8 @@ public final class SvgFontUtil extends SVGFont {
      * @throws Exception
      */
     @SuppressWarnings("all")
-    public static void writeFontAsSvg(final PrintStream ps, final Font font,
-            final String id, final int first, final int last,
-            final boolean autoRange, final boolean forceAscii) throws Exception {
+    public static void writeFontAsSvg(final PrintStream ps, final Font font, final String id, final int first,
+            final int last, final boolean autoRange, final boolean forceAscii) throws Exception {
         writeSvgBegin(ps);
         writeSvgDefsBegin(ps);
         writeFontAsSVGFragment(ps, font, id, first, last, autoRange, forceAscii);

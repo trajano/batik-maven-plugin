@@ -19,8 +19,7 @@ public class LoggingSvgConverterController implements SVGConverterController {
     /**
      * Resource bundle.
      */
-    private final ResourceBundle bundle = ResourceBundle
-            .getBundle("META-INF/Messages");
+    private final ResourceBundle bundle = ResourceBundle.getBundle("META-INF/Messages");
 
     /**
      * Fail on error.
@@ -44,8 +43,7 @@ public class LoggingSvgConverterController implements SVGConverterController {
      *            fail on error.
      */
     @SuppressWarnings("all")
-    public LoggingSvgConverterController(final Log mavenLogger,
-            final boolean failOnError) {
+    public LoggingSvgConverterController(final Log mavenLogger, final boolean failOnError) {
         this.mavenLogger = mavenLogger;
         this.failOnError = failOnError;
     }
@@ -58,10 +56,9 @@ public class LoggingSvgConverterController implements SVGConverterController {
      * @param dest
      *            destination file
      */
-    public void onSourceTranscodingSuccess(final SVGConverterSource source,
-            final File dest) {
-        mavenLogger.info(String.format(bundle.getString("transcoded"),
-                source.getName(), dest));
+    @Override
+    public void onSourceTranscodingSuccess(final SVGConverterSource source, final File dest) {
+        mavenLogger.info(String.format(bundle.getString("transcoded"), source.getName(), dest));
     }
 
     /**
@@ -79,11 +76,10 @@ public class LoggingSvgConverterController implements SVGConverterController {
      * @return true if the transcoding process should continue on other sources
      *         and it should return false if it should not.
      */
-    public boolean proceedOnSourceTranscodingFailure(
-            final SVGConverterSource source, final File dest,
+    @Override
+    public boolean proceedOnSourceTranscodingFailure(final SVGConverterSource source, final File dest,
             final String errorCode) {
-        mavenLogger.error(String.format(bundle.getString("transcodefailure"),
-                source.getName(), dest, errorCode));
+        mavenLogger.error(String.format(bundle.getString("transcodefailure"), source.getName(), dest, errorCode));
         return !failOnError;
     }
 
@@ -103,10 +99,9 @@ public class LoggingSvgConverterController implements SVGConverterController {
      * @return true if the transcoding process should proceed or false
      *         otherwise.
      */
-    public boolean proceedWithComputedTask(final Transcoder transcoder,
-            @SuppressWarnings("rawtypes") final Map hints,
-            @SuppressWarnings("rawtypes") final List sources,
-            @SuppressWarnings("rawtypes") final List dest) {
+    @Override
+    public boolean proceedWithComputedTask(final Transcoder transcoder, @SuppressWarnings("rawtypes") final Map hints,
+            @SuppressWarnings("rawtypes") final List sources, @SuppressWarnings("rawtypes") final List dest) {
         return true;
     }
 
@@ -121,10 +116,9 @@ public class LoggingSvgConverterController implements SVGConverterController {
      *            destination file
      * @return true if the source should be transcoded and false otherwise.
      */
-    public boolean proceedWithSourceTranscoding(
-            final SVGConverterSource source, final File dest) {
-        mavenLogger.info(String.format(bundle.getString("abouttotranscode"),
-                source.getName(), dest));
+    @Override
+    public boolean proceedWithSourceTranscoding(final SVGConverterSource source, final File dest) {
+        mavenLogger.info(String.format(bundle.getString("abouttotranscode"), source.getName(), dest));
         return true;
     }
 
