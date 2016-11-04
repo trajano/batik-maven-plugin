@@ -8,14 +8,14 @@
     </parent>
     <groupId>net.trajano.mojo</groupId>
     <artifactId>batik-maven-plugin</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.1</version>
     <packaging>maven-plugin</packaging>
     <name>Batik Maven Plugin</name>
     <description>Provides functionality to execute the Batik Rasterizer and Font converter.</description>
     <scm>
         <connection>scm:git:https://github.com/trajano/batik-maven-plugin</connection>
         <developerConnection>scm:git:ssh://git@github.com/trajano/batik-maven-plugin.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>batik-maven-plugin-1.1.1</tag>
         <url>https://github.com/trajano/batik-maven-plugin</url>
     </scm>
     <distributionManagement>
