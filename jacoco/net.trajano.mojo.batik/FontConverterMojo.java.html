@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FontConverterMojo.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Batik Maven Plugin</a> &gt; <a href="index.source.html" class="el_package">net.trajano.mojo.batik</a> &gt; <span class="el_source">FontConverterMojo.java</span></div><h1>FontConverterMojo.java</h1><pre class="source lang-java linenums">package net.trajano.mojo.batik;
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FontConverterMojo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Batik Maven Plugin</a> &gt; <a href="index.source.html" class="el_package">net.trajano.mojo.batik</a> &gt; <span class="el_source">FontConverterMojo.java</span></div><h1>FontConverterMojo.java</h1><pre class="source lang-java linenums">package net.trajano.mojo.batik;
 
 import static java.lang.String.format;
 
@@ -7,8 +7,6 @@ import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import net.trajano.mojo.batik.internal.SvgFontUtil;
 
 import org.apache.batik.svggen.font.Font;
 import org.apache.maven.model.FileSet;
@@ -22,6 +20,8 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.Scanner;
 import org.sonatype.plexus.build.incremental.BuildContext;
 
+import net.trajano.mojo.batik.internal.SvgFontUtil;
+
 /**
  * Executes the Batik Font converter.
  */
@@ -31,8 +31,7 @@ import org.sonatype.plexus.build.incremental.BuildContext;
     /**
      * Resource bundle.
      */
-<span class="fc" id="L34">    private static final ResourceBundle R = ResourceBundle</span>
-<span class="fc" id="L35">            .getBundle(&quot;META-INF/Messages&quot;);</span>
+<span class="fc" id="L34">    private static final ResourceBundle R = ResourceBundle.getBundle(&quot;META-INF/Messages&quot;);</span>
     /**
      * Build context.
      */
@@ -80,45 +79,41 @@ import org.sonatype.plexus.build.incremental.BuildContext;
     @Override
     public void execute() throws MojoExecutionException {
 
-<span class="fc" id="L83">        destDir.mkdirs();</span>
-<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (fontFileSets == null) {</span>
-<span class="fc" id="L85">            final FileSet defaultFontFileSet = new FileSet();</span>
-<span class="fc" id="L86">            defaultFontFileSet.setDirectory(new File(project.getBasedir(),</span>
-<span class="fc" id="L87">                    &quot;src/main/ttf&quot;).getPath());</span>
-<span class="fc" id="L88">            defaultFontFileSet.addInclude(&quot;**/*.ttf&quot;);</span>
-<span class="fc" id="L89">            fontFileSets = Collections.singletonList(defaultFontFileSet);</span>
+<span class="fc" id="L82">        destDir.mkdirs();</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (fontFileSets == null) {</span>
+<span class="fc" id="L84">            final FileSet defaultFontFileSet = new FileSet();</span>
+<span class="fc" id="L85">            defaultFontFileSet.setDirectory(new File(project.getBasedir(), &quot;src/main/ttf&quot;).getPath());</span>
+<span class="fc" id="L86">            defaultFontFileSet.addInclude(&quot;**/*.ttf&quot;);</span>
+<span class="fc" id="L87">            fontFileSets = Collections.singletonList(defaultFontFileSet);</span>
         }
-<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (final FileSet fileSet : fontFileSets) {</span>
-<span class="fc" id="L92">            final String directory = fileSet.getDirectory();</span>
-<span class="fc" id="L93">            final File baseDirectory = new File(directory); // NOPMD</span>
-<span class="fc bfc" id="L94" title="All 2 branches covered.">            if (!baseDirectory.isDirectory()) { // NOPMD</span>
-<span class="fc" id="L95">                getLog().warn(format(R.getString(&quot;missingdir&quot;), directory));</span>
-<span class="fc" id="L96">                continue;</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        for (final FileSet fileSet : fontFileSets) {</span>
+<span class="fc" id="L90">            final String directory = fileSet.getDirectory();</span>
+<span class="fc" id="L91">            final File baseDirectory = new File(directory); // NOPMD</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            if (!baseDirectory.isDirectory()) { // NOPMD</span>
+<span class="fc" id="L93">                getLog().warn(format(R.getString(&quot;missingdir&quot;), directory));</span>
+<span class="fc" id="L94">                continue;</span>
             }
-<span class="fc" id="L98">            final Scanner scanner = buildContext.newScanner(baseDirectory);</span>
-<span class="fc" id="L99">            scanner.setIncludes(fileSet.getIncludes().toArray(new String[0])); // NOPMD</span>
-<span class="fc" id="L100">            scanner.setExcludes(fileSet.getExcludes().toArray(new String[0])); // NOPMD</span>
-<span class="fc" id="L101">            scanner.scan();</span>
-<span class="fc bfc" id="L102" title="All 2 branches covered.">            for (final String includedFile : scanner.getIncludedFiles()) {</span>
+<span class="fc" id="L96">            final Scanner scanner = buildContext.newScanner(baseDirectory);</span>
+<span class="fc" id="L97">            scanner.setIncludes(fileSet.getIncludes().toArray(new String[0])); // NOPMD</span>
+<span class="fc" id="L98">            scanner.setExcludes(fileSet.getExcludes().toArray(new String[0])); // NOPMD</span>
+<span class="fc" id="L99">            scanner.scan();</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">            for (final String includedFile : scanner.getIncludedFiles()) {</span>
 
-<span class="fc" id="L104">                final File inputFile = new File(baseDirectory, // NOPMD</span>
+<span class="fc" id="L102">                final File inputFile = new File(baseDirectory, // NOPMD</span>
                         includedFile);
-<span class="fc" id="L106">                final String basename = includedFile.substring(0,</span>
-<span class="fc" id="L107">                        includedFile.lastIndexOf('.'));</span>
-<span class="fc" id="L108">                final File svgFile = new File(destDir, basename + &quot;.svg&quot;); // NOPMD</span>
+<span class="fc" id="L104">                final String basename = includedFile.substring(0, includedFile.lastIndexOf('.'));</span>
+<span class="fc" id="L105">                final File svgFile = new File(destDir, basename + &quot;.svg&quot;); // NOPMD</span>
                 try {
-<span class="fc" id="L110">                    final PrintStream ps = new PrintStream(// NOPMD</span>
-<span class="fc" id="L111">                            buildContext.newFileOutputStream(svgFile));</span>
-<span class="fc" id="L112">                    SvgFontUtil.writeFontAsSvg(ps,</span>
-<span class="fc" id="L113">                            Font.create(inputFile.toString()), basename);</span>
-<span class="fc" id="L114">                    ps.close();</span>
-<span class="fc" id="L115">                } catch (final Exception e) {</span>
-<span class="fc" id="L116">                    throw new MojoExecutionException(String.format(</span>
-<span class="fc" id="L117">                            R.getString(&quot;failedtorender&quot;), inputFile), e);</span>
-<span class="fc" id="L118">                }</span>
+<span class="fc" id="L107">                    final PrintStream ps = new PrintStream(// NOPMD</span>
+<span class="fc" id="L108">                            buildContext.newFileOutputStream(svgFile));</span>
+<span class="fc" id="L109">                    SvgFontUtil.writeFontAsSvg(ps, Font.create(inputFile.toString()), basename);</span>
+<span class="fc" id="L110">                    ps.close();</span>
+<span class="fc" id="L111">                } catch (final Exception e) {</span>
+<span class="fc" id="L112">                    throw new MojoExecutionException(String.format(R.getString(&quot;failedtorender&quot;), inputFile), e);</span>
+<span class="fc" id="L113">                }</span>
             }
-<span class="fc" id="L120">        }</span>
+<span class="fc" id="L115">        }</span>
 
-<span class="fc" id="L122">    }</span>
+<span class="fc" id="L117">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>LoggingSvgConverterController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Batik Maven Plugin</a> &gt; <a href="index.source.html" class="el_package">net.trajano.mojo.batik.internal</a> &gt; <span class="el_source">LoggingSvgConverterController.java</span></div><h1>LoggingSvgConverterController.java</h1><pre class="source lang-java linenums">package net.trajano.mojo.batik.internal;
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoggingSvgConverterController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Batik Maven Plugin</a> &gt; <a href="index.source.html" class="el_package">net.trajano.mojo.batik.internal</a> &gt; <span class="el_source">LoggingSvgConverterController.java</span></div><h1>LoggingSvgConverterController.java</h1><pre class="source lang-java linenums">package net.trajano.mojo.batik.internal;
 
 import java.io.File;
 import java.util.List;
@@ -19,8 +19,7 @@ public class LoggingSvgConverterController implements SVGConverterController {
     /**
      * Resource bundle.
      */
-<span class="fc" id="L22">    private final ResourceBundle bundle = ResourceBundle</span>
-<span class="fc" id="L23">            .getBundle(&quot;META-INF/Messages&quot;);</span>
+<span class="fc" id="L22">    private final ResourceBundle bundle = ResourceBundle.getBundle(&quot;META-INF/Messages&quot;);</span>
 
     /**
      * Fail on error.
@@ -44,11 +43,10 @@ public class LoggingSvgConverterController implements SVGConverterController {
      *            fail on error.
      */
     @SuppressWarnings(&quot;all&quot;)
-    public LoggingSvgConverterController(final Log mavenLogger,
-<span class="fc" id="L48">            final boolean failOnError) {</span>
-<span class="fc" id="L49">        this.mavenLogger = mavenLogger;</span>
-<span class="fc" id="L50">        this.failOnError = failOnError;</span>
-<span class="fc" id="L51">    }</span>
+<span class="fc" id="L46">    public LoggingSvgConverterController(final Log mavenLogger, final boolean failOnError) {</span>
+<span class="fc" id="L47">        this.mavenLogger = mavenLogger;</span>
+<span class="fc" id="L48">        this.failOnError = failOnError;</span>
+<span class="fc" id="L49">    }</span>
 
     /**
      * Invoked when the rasterizer successfully transcoded the input source.
@@ -58,11 +56,10 @@ public class LoggingSvgConverterController implements SVGConverterController {
      * @param dest
      *            destination file
      */
-    public void onSourceTranscodingSuccess(final SVGConverterSource source,
-            final File dest) {
-<span class="fc" id="L63">        mavenLogger.info(String.format(bundle.getString(&quot;transcoded&quot;),</span>
-<span class="fc" id="L64">                source.getName(), dest));</span>
-<span class="fc" id="L65">    }</span>
+    @Override
+    public void onSourceTranscodingSuccess(final SVGConverterSource source, final File dest) {
+<span class="fc" id="L61">        mavenLogger.info(String.format(bundle.getString(&quot;transcoded&quot;), source.getName(), dest));</span>
+<span class="fc" id="L62">    }</span>
 
     /**
      * Invoked when the rasterizer got an error while transcoding the input
@@ -79,12 +76,11 @@ public class LoggingSvgConverterController implements SVGConverterController {
      * @return true if the transcoding process should continue on other sources
      *         and it should return false if it should not.
      */
-    public boolean proceedOnSourceTranscodingFailure(
-            final SVGConverterSource source, final File dest,
+    @Override
+    public boolean proceedOnSourceTranscodingFailure(final SVGConverterSource source, final File dest,
             final String errorCode) {
-<span class="fc" id="L85">        mavenLogger.error(String.format(bundle.getString(&quot;transcodefailure&quot;),</span>
-<span class="fc" id="L86">                source.getName(), dest, errorCode));</span>
-<span class="fc bfc" id="L87" title="All 2 branches covered.">        return !failOnError;</span>
+<span class="fc" id="L82">        mavenLogger.error(String.format(bundle.getString(&quot;transcodefailure&quot;), source.getName(), dest, errorCode));</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        return !failOnError;</span>
     }
 
     /**
@@ -103,11 +99,10 @@ public class LoggingSvgConverterController implements SVGConverterController {
      * @return true if the transcoding process should proceed or false
      *         otherwise.
      */
-    public boolean proceedWithComputedTask(final Transcoder transcoder,
-            @SuppressWarnings(&quot;rawtypes&quot;) final Map hints,
-            @SuppressWarnings(&quot;rawtypes&quot;) final List sources,
-            @SuppressWarnings(&quot;rawtypes&quot;) final List dest) {
-<span class="fc" id="L110">        return true;</span>
+    @Override
+    public boolean proceedWithComputedTask(final Transcoder transcoder, @SuppressWarnings(&quot;rawtypes&quot;) final Map hints,
+            @SuppressWarnings(&quot;rawtypes&quot;) final List sources, @SuppressWarnings(&quot;rawtypes&quot;) final List dest) {
+<span class="fc" id="L105">        return true;</span>
     }
 
     /**
@@ -121,12 +116,11 @@ public class LoggingSvgConverterController implements SVGConverterController {
      *            destination file
      * @return true if the source should be transcoded and false otherwise.
      */
-    public boolean proceedWithSourceTranscoding(
-            final SVGConverterSource source, final File dest) {
-<span class="fc" id="L126">        mavenLogger.info(String.format(bundle.getString(&quot;abouttotranscode&quot;),</span>
-<span class="fc" id="L127">                source.getName(), dest));</span>
-<span class="fc" id="L128">        return true;</span>
+    @Override
+    public boolean proceedWithSourceTranscoding(final SVGConverterSource source, final File dest) {
+<span class="fc" id="L121">        mavenLogger.info(String.format(bundle.getString(&quot;abouttotranscode&quot;), source.getName(), dest));</span>
+<span class="fc" id="L122">        return true;</span>
     }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

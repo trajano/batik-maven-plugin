@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>RasterizerMojo.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Batik Maven Plugin</a> &gt; <a href="index.source.html" class="el_package">net.trajano.mojo.batik</a> &gt; <span class="el_source">RasterizerMojo.java</span></div><h1>RasterizerMojo.java</h1><pre class="source lang-java linenums">package net.trajano.mojo.batik;
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RasterizerMojo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Batik Maven Plugin</a> &gt; <a href="index.source.html" class="el_package">net.trajano.mojo.batik</a> &gt; <span class="el_source">RasterizerMojo.java</span></div><h1>RasterizerMojo.java</h1><pre class="source lang-java linenums">package net.trajano.mojo.batik;
 
 import static java.lang.String.format;
 
@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import net.trajano.mojo.batik.internal.LoggingSvgConverterController;
 
 import org.apache.batik.apps.rasterizer.DestinationType;
 import org.apache.batik.apps.rasterizer.SVGConverter;
@@ -24,6 +22,8 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.Scanner;
 import org.sonatype.plexus.build.incremental.BuildContext;
 
+import net.trajano.mojo.batik.internal.LoggingSvgConverterController;
+
 /**
  * Executes the Batik rasterizer.
  */
@@ -33,8 +33,7 @@ import org.sonatype.plexus.build.incremental.BuildContext;
     /**
      * Resource bundle.
      */
-<span class="fc" id="L36">    private static final ResourceBundle R = ResourceBundle</span>
-<span class="fc" id="L37">            .getBundle(&quot;META-INF/Messages&quot;);</span>
+<span class="fc" id="L36">    private static final ResourceBundle R = ResourceBundle.getBundle(&quot;META-INF/Messages&quot;);</span>
 
     /**
      * Build context.
@@ -124,65 +123,58 @@ import org.sonatype.plexus.build.incremental.BuildContext;
      */
     @Override
     public void execute() throws MojoExecutionException {
-<span class="fc" id="L127">        final SVGConverter converter = new SVGConverter(</span>
-<span class="fc" id="L128">                new LoggingSvgConverterController(getLog(), failOnError));</span>
-<span class="fc" id="L129">        converter.setDestinationType(mapMimeTypeToDestinationType(mimeType));</span>
+<span class="fc" id="L126">        final SVGConverter converter = new SVGConverter(new LoggingSvgConverterController(getLog(), failOnError));</span>
+<span class="fc" id="L127">        converter.setDestinationType(mapMimeTypeToDestinationType(mimeType));</span>
 
-<span class="fc" id="L131">        final List&lt;String&gt; unfilteredSourceFiles = new LinkedList&lt;String&gt;();</span>
-<span class="fc" id="L132">        final List&lt;String&gt; filteredSourceFiles = new LinkedList&lt;String&gt;();</span>
-<span class="fc bfc" id="L133" title="All 2 branches covered.">        if (svgResources == null) {</span>
-<span class="fc" id="L134">            final Resource defaultSvgResource = new Resource();</span>
-<span class="fc" id="L135">            defaultSvgResource.setDirectory(new File(project.getBasedir(),</span>
-<span class="fc" id="L136">                    &quot;src/main/svg&quot;).getPath());</span>
-<span class="fc" id="L137">            defaultSvgResource.addInclude(&quot;**/*.svg&quot;);</span>
-<span class="fc" id="L138">            defaultSvgResource.setFiltering(false);</span>
-<span class="fc" id="L139">            svgResources = Collections.singletonList(defaultSvgResource);</span>
+<span class="fc" id="L129">        final List&lt;String&gt; unfilteredSourceFiles = new LinkedList&lt;String&gt;();</span>
+<span class="fc" id="L130">        final List&lt;String&gt; filteredSourceFiles = new LinkedList&lt;String&gt;();</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        if (svgResources == null) {</span>
+<span class="fc" id="L132">            final Resource defaultSvgResource = new Resource();</span>
+<span class="fc" id="L133">            defaultSvgResource.setDirectory(new File(project.getBasedir(), &quot;src/main/svg&quot;).getPath());</span>
+<span class="fc" id="L134">            defaultSvgResource.addInclude(&quot;**/*.svg&quot;);</span>
+<span class="fc" id="L135">            defaultSvgResource.setFiltering(false);</span>
+<span class="fc" id="L136">            svgResources = Collections.singletonList(defaultSvgResource);</span>
         }
-<span class="fc bfc" id="L141" title="All 2 branches covered.">        for (final Resource resource : svgResources) {</span>
-<span class="fc" id="L142">            final File basedirectory = new File(resource.getDirectory()); // NOPMD</span>
-<span class="fc bfc" id="L143" title="All 2 branches covered.">            if (!basedirectory.isDirectory()) { // NOPMD</span>
-<span class="fc" id="L144">                getLog().warn(</span>
-<span class="fc" id="L145">                        format(R.getString(&quot;missingdir&quot;),</span>
-<span class="fc" id="L146">                                resource.getDirectory()));</span>
-<span class="fc" id="L147">                continue;</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        for (final Resource resource : svgResources) {</span>
+<span class="fc" id="L139">            final File basedirectory = new File(resource.getDirectory()); // NOPMD</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">            if (!basedirectory.isDirectory()) { // NOPMD</span>
+<span class="fc" id="L141">                getLog().warn(format(R.getString(&quot;missingdir&quot;), resource.getDirectory()));</span>
+<span class="fc" id="L142">                continue;</span>
             }
-<span class="fc" id="L149">            final Scanner scanner = buildContext.newScanner(basedirectory);</span>
-<span class="fc" id="L150">            scanner.setIncludes(resource.getIncludes().toArray(new String[0])); // NOPMD</span>
-<span class="fc" id="L151">            scanner.setExcludes(resource.getExcludes().toArray(new String[0])); // NOPMD</span>
-<span class="fc" id="L152">            scanner.scan();</span>
-<span class="fc bfc" id="L153" title="All 2 branches covered.">            for (final String includedFile : scanner.getIncludedFiles()) {</span>
-<span class="fc bfc" id="L154" title="All 2 branches covered.">                if (resource.isFiltering()) {</span>
+<span class="fc" id="L144">            final Scanner scanner = buildContext.newScanner(basedirectory);</span>
+<span class="fc" id="L145">            scanner.setIncludes(resource.getIncludes().toArray(new String[0])); // NOPMD</span>
+<span class="fc" id="L146">            scanner.setExcludes(resource.getExcludes().toArray(new String[0])); // NOPMD</span>
+<span class="fc" id="L147">            scanner.scan();</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">            for (final String includedFile : scanner.getIncludedFiles()) {</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">                if (resource.isFiltering()) {</span>
                     // TODO write out filtered file to batik folder and use the
                     // filtered file as input.
-<span class="fc" id="L157">                    filteredSourceFiles.add(new File(basedirectory, // NOPMD</span>
-<span class="fc" id="L158">                            includedFile).toString());</span>
+<span class="fc" id="L152">                    filteredSourceFiles.add(new File(basedirectory, // NOPMD</span>
+<span class="fc" id="L153">                            includedFile).toString());</span>
                 } else {
-<span class="fc" id="L160">                    unfilteredSourceFiles.add(new File(basedirectory, // NOPMD</span>
-<span class="fc" id="L161">                            includedFile).toString());</span>
+<span class="fc" id="L155">                    unfilteredSourceFiles.add(new File(basedirectory, // NOPMD</span>
+<span class="fc" id="L156">                            includedFile).toString());</span>
                 }
             }
-<span class="fc" id="L164">        }</span>
-<span class="fc" id="L165">        converter.setDst(destDir);</span>
-<span class="fc" id="L166">        converter.setWidth(width);</span>
-<span class="fc" id="L167">        converter.setHeight(height);</span>
-<span class="fc" id="L168">        converter.setMaxWidth(maxWidth);</span>
-<span class="fc" id="L169">        converter.setMaxHeight(maxHeight);</span>
+<span class="fc" id="L159">        }</span>
+<span class="fc" id="L160">        converter.setDst(destDir);</span>
+<span class="fc" id="L161">        converter.setWidth(width);</span>
+<span class="fc" id="L162">        converter.setHeight(height);</span>
+<span class="fc" id="L163">        converter.setMaxWidth(maxWidth);</span>
+<span class="fc" id="L164">        converter.setMaxHeight(maxHeight);</span>
         try {
-<span class="fc bfc" id="L171" title="All 2 branches covered.">            if (!filteredSourceFiles.isEmpty()) {</span>
-<span class="fc" id="L172">                converter</span>
-<span class="fc" id="L173">                        .setSources(filteredSourceFiles.toArray(new String[0]));</span>
-<span class="fc" id="L174">                converter.execute();</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">            if (!filteredSourceFiles.isEmpty()) {</span>
+<span class="fc" id="L167">                converter.setSources(filteredSourceFiles.toArray(new String[0]));</span>
+<span class="fc" id="L168">                converter.execute();</span>
             }
-<span class="fc bfc" id="L176" title="All 2 branches covered.">            if (!unfilteredSourceFiles.isEmpty()) {</span>
-<span class="fc" id="L177">                converter.setSources(unfilteredSourceFiles</span>
-<span class="fc" id="L178">                        .toArray(new String[0]));</span>
-<span class="fc" id="L179">                converter.execute();</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">            if (!unfilteredSourceFiles.isEmpty()) {</span>
+<span class="fc" id="L171">                converter.setSources(unfilteredSourceFiles.toArray(new String[0]));</span>
+<span class="fc" id="L172">                converter.execute();</span>
             }
-<span class="fc" id="L181">        } catch (final SVGConverterException e) {</span>
-<span class="fc" id="L182">            throw new MojoExecutionException(</span>
-<span class="fc" id="L183">                    R.getString(&quot;errorduringconversion&quot;), e);</span>
-<span class="fc" id="L184">        }</span>
-<span class="fc" id="L185">    }</span>
+<span class="fc" id="L174">        } catch (final SVGConverterException e) {</span>
+<span class="fc" id="L175">            throw new MojoExecutionException(R.getString(&quot;errorduringconversion&quot;), e);</span>
+<span class="fc" id="L176">        }</span>
+<span class="fc" id="L177">    }</span>
 
     /**
      * Maps a MIME type string to the {@link DestinationType}.
@@ -192,20 +184,18 @@ import org.sonatype.plexus.build.incremental.BuildContext;
      * @return destination type
      * @throws MojoExecutionException
      */
-    private DestinationType mapMimeTypeToDestinationType(
-            final String mimeTypeString) throws MojoExecutionException {
-<span class="fc bfc" id="L197" title="All 2 branches covered.">        if (&quot;image/png&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
-<span class="fc" id="L198">            return DestinationType.PNG;</span>
-<span class="fc bfc" id="L199" title="All 2 branches covered.">        } else if (&quot;image/tiff&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
-<span class="fc" id="L200">            return DestinationType.TIFF;</span>
-<span class="fc bfc" id="L201" title="All 2 branches covered.">        } else if (&quot;image/jpeg&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
-<span class="fc" id="L202">            return DestinationType.JPEG;</span>
-<span class="fc bfc" id="L203" title="All 2 branches covered.">        } else if (&quot;application/pdf&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
-<span class="fc" id="L204">            return DestinationType.PDF;</span>
+    private DestinationType mapMimeTypeToDestinationType(final String mimeTypeString) throws MojoExecutionException {
+<span class="fc bfc" id="L188" title="All 2 branches covered.">        if (&quot;image/png&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
+<span class="fc" id="L189">            return DestinationType.PNG;</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">        } else if (&quot;image/tiff&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
+<span class="fc" id="L191">            return DestinationType.TIFF;</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">        } else if (&quot;image/jpeg&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
+<span class="fc" id="L193">            return DestinationType.JPEG;</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">        } else if (&quot;application/pdf&quot;.equalsIgnoreCase(mimeTypeString)) {</span>
+<span class="fc" id="L195">            return DestinationType.PDF;</span>
         } else {
-<span class="fc" id="L206">            throw new MojoExecutionException(String.format(</span>
-<span class="fc" id="L207">                    R.getString(&quot;unsupportedmimetype&quot;), mimeTypeString));</span>
+<span class="fc" id="L197">            throw new MojoExecutionException(String.format(R.getString(&quot;unsupportedmimetype&quot;), mimeTypeString));</span>
         }
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

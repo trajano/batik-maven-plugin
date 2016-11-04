@@ -23,11 +23,11 @@ under the License.
     <link>http://site.trajano.net/trajano/batik-maven-plugin/</link>
     <description>Batik Maven Plugin - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2012 - 2015 Trajano</copyright>
+    <copyright>&#169;2012 - 2016 Trajano</copyright>
     <item>
-      <title>File: 7,
+      <title>File: 8,
              Errors: 0,
-             Warnings: 0,
+             Warnings: 523,
              Infos: 0
       </title>
             <link>http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html</link>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.internal.SvgFontUtil.java">net/trajano/mojo/batik/internal/SvgFontUtil.java</a>
+                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.internal.package-info.java">net/trajano/mojo/batik/internal/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.internal.package-info.java">net/trajano/mojo/batik/internal/package-info.java</a>
+                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.internal.SvgFontUtil.java">net/trajano/mojo/batik/internal/SvgFontUtil.java</a>
                 </td>
                 <td>
                   0
@@ -123,6 +123,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://site.trajano.net/trajano/batik-maven-plugin//checkstyle.html#net.trajano.mojo.batik.HelpMojo.java">net/trajano/mojo/batik/HelpMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  523
                 </td>
                 <td>
                   0

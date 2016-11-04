@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SvgFontUtil.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Batik Maven Plugin</a> &gt; <a href="index.source.html" class="el_package">net.trajano.mojo.batik.internal</a> &gt; <span class="el_source">SvgFontUtil.java</span></div><h1>SvgFontUtil.java</h1><pre class="source lang-java linenums">package net.trajano.mojo.batik.internal;
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SvgFontUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Batik Maven Plugin</a> &gt; <a href="index.source.html" class="el_package">net.trajano.mojo.batik.internal</a> &gt; <span class="el_source">SvgFontUtil.java</span></div><h1>SvgFontUtil.java</h1><pre class="source lang-java linenums">package net.trajano.mojo.batik.internal;
 
 import java.io.PrintStream;
 
@@ -27,10 +27,9 @@ public final class SvgFontUtil extends SVGFont {
      * @throws Exception
      */
     @SuppressWarnings(&quot;all&quot;)
-    public static void writeFontAsSvg(final PrintStream ps, final Font font,
-            final String id) throws Exception {
-<span class="fc" id="L32">        writeFontAsSvg(ps, font, id, -1, -1, true, false);</span>
-<span class="fc" id="L33">    }</span>
+    public static void writeFontAsSvg(final PrintStream ps, final Font font, final String id) throws Exception {
+<span class="fc" id="L31">        writeFontAsSvg(ps, font, id, -1, -1, true, false);</span>
+<span class="fc" id="L32">    }</span>
 
     /**
      * Writes the font as an SVG file. This is from a segment of code from
@@ -54,21 +53,20 @@ public final class SvgFontUtil extends SVGFont {
      * @throws Exception
      */
     @SuppressWarnings(&quot;all&quot;)
-    public static void writeFontAsSvg(final PrintStream ps, final Font font,
-            final String id, final int first, final int last,
-            final boolean autoRange, final boolean forceAscii) throws Exception {
-<span class="fc" id="L60">        writeSvgBegin(ps);</span>
-<span class="fc" id="L61">        writeSvgDefsBegin(ps);</span>
-<span class="fc" id="L62">        writeFontAsSVGFragment(ps, font, id, first, last, autoRange, forceAscii);</span>
-<span class="fc" id="L63">        writeSvgDefsEnd(ps);</span>
-<span class="fc" id="L64">        writeSvgEnd(ps);</span>
-<span class="fc" id="L65">    }</span>
+    public static void writeFontAsSvg(final PrintStream ps, final Font font, final String id, final int first,
+            final int last, final boolean autoRange, final boolean forceAscii) throws Exception {
+<span class="fc" id="L58">        writeSvgBegin(ps);</span>
+<span class="fc" id="L59">        writeSvgDefsBegin(ps);</span>
+<span class="fc" id="L60">        writeFontAsSVGFragment(ps, font, id, first, last, autoRange, forceAscii);</span>
+<span class="fc" id="L61">        writeSvgDefsEnd(ps);</span>
+<span class="fc" id="L62">        writeSvgEnd(ps);</span>
+<span class="fc" id="L63">    }</span>
 
     /**
      * Prevent instantiation of utility class.
      */
     private SvgFontUtil() {
-<span class="fc" id="L71">        super();</span>
-<span class="fc" id="L72">    }</span>
+<span class="fc" id="L69">        super();</span>
+<span class="fc" id="L70">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
