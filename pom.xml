@@ -13,9 +13,10 @@
     <name>Batik Maven Plugin</name>
     <description>Provides functionality to execute the Batik Rasterizer and Font converter.</description>
     <scm>
-        <connection>scm:git:https://github.com/trajano/${project.artifactId}</connection>
-        <developerConnection>scm:git:ssh://git@github.com/trajano/${project.artifactId}.git</developerConnection>
+        <connection>scm:git:https://github.com/trajano/batik-maven-plugin</connection>
+        <developerConnection>scm:git:ssh://git@github.com/trajano/batik-maven-plugin.git</developerConnection>
         <tag>HEAD</tag>
+        <url>https://github.com/trajano/batik-maven-plugin</url>
     </scm>
     <distributionManagement>
         <site>
